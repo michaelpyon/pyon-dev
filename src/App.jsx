@@ -3,41 +3,41 @@ import { useEffect, useRef } from 'react'
 const projects = [
   {
     name: 'Subway Shame',
-    tagline: 'Is my train fucked? NYC subway shame scores with live MTA data.',
+    tagline: 'Real-time NYC subway reliability scores. Pulls live MTA feeds, calculates a shame score per line, and tells you if your commute is about to hurt.',
     stack: ['Python', 'Flask', 'MTA API'],
-    status: 'Live on Railway',
+    status: 'Live',
     color: 'var(--color-subway)',
     url: 'https://subway.pyon.dev',
   },
   {
     name: 'ShooterDigest',
-    tagline: 'Weekly FPS intelligence. Steam concurrents, Reddit sentiment, press coverage.',
+    tagline: 'Weekly intelligence briefing for competitive FPS games. Aggregates Steam concurrents, Reddit sentiment, and press coverage into a single digestible report.',
     stack: ['Python', 'Flask', 'Steam API', 'Reddit API'],
-    status: 'Live on Railway',
+    status: 'Live',
     color: 'var(--color-shooter)',
     url: 'https://shooter.pyon.dev',
   },
   {
     name: 'VintageMap',
-    tagline: 'Enter a year, see global wine quality ratings by region.',
+    tagline: 'Interactive wine vintage explorer. Pick a year, see quality ratings across every major wine region on a world map. Shareable URLs for any vintage.',
     stack: ['React', 'Vite', 'Python', 'Flask'],
-    status: 'Live on Railway',
+    status: 'Live',
     color: 'var(--color-vintage)',
     url: 'https://vintage.pyon.dev',
   },
   {
     name: 'MassageOS',
-    tagline: 'Massage booking with an anatomical body map. Click where it hurts.',
+    tagline: 'Massage booking reimagined with a 58-region anatomical body map. Clients tap where it hurts, therapists see the full picture before the session starts.',
     stack: ['Next.js', 'Prisma', 'TypeScript'],
-    status: 'Deploying soon',
+    status: 'Coming soon',
     color: 'var(--color-massage)',
     url: 'https://massage.pyon.dev',
   },
   {
     name: 'Random Pin Cuisine',
-    tagline: 'Drop a pin anywhere on Earth. Find that cuisine in NYC.',
+    tagline: 'Drop a pin on any spot on Earth, and find restaurants serving that region\'s cuisine in New York City. 80+ countries with local cuisine lookups.',
     stack: ['React', 'Vite', 'Leaflet', 'OSM'],
-    status: 'Deploying soon',
+    status: 'Coming soon',
     color: 'var(--color-pin)',
     url: 'https://pin.pyon.dev',
   },
@@ -52,8 +52,8 @@ function Card({ project, index }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.opacity = '1'
-          el.style.transform = 'translateY(0)'
+          el.classList.add('animate-fade-up')
+          el.style.animationDelay = `${400 + index * 100}ms`
           observer.unobserve(el)
         }
       },
@@ -61,7 +61,7 @@ function Card({ project, index }) {
     )
     observer.observe(el)
     return () => observer.disconnect()
-  }, [])
+  }, [index])
 
   return (
     <a
@@ -69,51 +69,48 @@ function Card({ project, index }) {
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block rounded-lg border border-border bg-surface p-6 transition-all duration-300 hover:bg-surface-hover hover:border-transparent group"
+      className="card-stripe block rounded-lg border border-border bg-surface pl-5 pr-6 py-5 transition-all duration-300 hover:bg-surface-hover hover:border-border-hover group"
       style={{
         opacity: 0,
-        transform: 'translateY(20px)',
-        transition: 'opacity 0.5s ease, transform 0.5s ease, background-color 0.3s ease, border-color 0.3s ease',
-        transitionDelay: `${index * 80}ms`,
+        '--stripe-color': project.color,
       }}
     >
-      <div className="flex items-start justify-between mb-3">
-        <h2
-          className="text-lg font-semibold tracking-tight transition-colors duration-300"
-          style={{ color: project.color }}
-        >
-          {project.name}
-        </h2>
+      <div className="flex items-baseline justify-between mb-2">
+        <div className="flex items-baseline gap-3">
+          <span className="text-text-subtle text-xs font-mono tabular-nums">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <h2
+            className="text-base font-semibold tracking-tight sm:text-lg"
+            style={{ color: project.color }}
+          >
+            {project.name}
+          </h2>
+        </div>
         <span
-          className="text-[11px] font-medium px-2 py-0.5 rounded-full shrink-0 ml-3"
+          className="text-[10px] font-medium tracking-wide uppercase shrink-0 ml-3"
           style={{
-            color: project.status === 'Live on Railway' ? '#22c55e' : '#737373',
-            backgroundColor: project.status === 'Live on Railway' ? '#22c55e14' : '#73737314',
+            color: project.status === 'Live' ? '#22c55e' : '#525252',
           }}
         >
           {project.status}
         </span>
       </div>
 
-      <p className="text-text-muted text-sm leading-relaxed mb-4">
+      <p className="text-text-muted text-sm leading-relaxed mb-4 ml-7">
         {project.tagline}
       </p>
 
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1.5 ml-7">
         {project.stack.map((tech) => (
           <span
             key={tech}
-            className="text-[11px] text-text-muted px-2 py-0.5 rounded border border-border"
+            className="text-[10px] text-text-subtle tracking-wide px-2 py-0.5 rounded border border-border"
           >
             {tech}
           </span>
         ))}
       </div>
-
-      <div
-        className="h-px mt-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ backgroundColor: project.color }}
-      />
     </a>
   )
 }
@@ -121,30 +118,94 @@ function Card({ project, index }) {
 export default function App() {
   return (
     <div className="min-h-screen bg-bg">
-      <header className="px-6 pt-8 pb-12 max-w-3xl mx-auto">
-        <span className="text-sm text-text-muted font-mono tracking-wide">
+      {/* Hero */}
+      <header className="px-6 pt-16 pb-20 max-w-2xl mx-auto sm:pt-24 sm:pb-28">
+        <p
+          className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
+          style={{ animationDelay: '100ms' }}
+        >
           pyon.dev
-        </span>
+        </p>
+        <h1
+          className="font-display text-5xl sm:text-7xl text-text tracking-tight leading-[0.95] mb-6 animate-fade-up"
+          style={{ animationDelay: '200ms' }}
+        >
+          Michael Pyon
+        </h1>
+        <p
+          className="text-text-muted text-base sm:text-lg leading-relaxed max-w-md animate-fade-up"
+          style={{ animationDelay: '350ms' }}
+        >
+          Strategy operator at Xbox. Building side projects to stay close to the product layer.
+        </p>
       </header>
 
-      <main className="px-6 max-w-3xl mx-auto">
-        <div className="grid gap-4">
+      {/* Projects */}
+      <main className="px-6 max-w-2xl mx-auto">
+        <p
+          className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
+          style={{ animationDelay: '500ms' }}
+        >
+          Projects
+        </p>
+        <div className="grid gap-3">
           {projects.map((project, i) => (
             <Card key={project.name} project={project} index={i} />
           ))}
         </div>
-
-        <section className="mt-20 mb-16 max-w-lg">
-          <p className="text-sm text-text-muted leading-relaxed">
-            Strategy operator at Xbox. These are side projects I build to stay close to the product layer, and because building things is more fun than writing decks about building things.
-          </p>
-        </section>
       </main>
 
-      <footer className="px-6 pb-8 max-w-3xl mx-auto">
-        <span className="text-xs text-text-muted">
-          pyon.dev · 2026
-        </span>
+      {/* About */}
+      <section className="px-6 max-w-2xl mx-auto mt-24 mb-20">
+        <p className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6">
+          About
+        </p>
+        <div className="max-w-lg space-y-4">
+          <p className="text-text-muted text-sm leading-relaxed">
+            I work in business strategy and operations at Microsoft, focused on the Xbox and Halo ecosystem. These projects are how I stay sharp on the product side — each one solves a real problem I ran into.
+          </p>
+          <p className="text-text-muted text-sm leading-relaxed">
+            Based in Brooklyn. Interested in live service games, data products, and building tools that are genuinely useful.
+          </p>
+        </div>
+
+        {/* Contact links */}
+        <div className="flex gap-6 mt-8">
+          <a
+            href="https://github.com/mpyon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/michaelpyon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:hello@pyon.dev"
+            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+          >
+            Email
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-6 pb-10 max-w-2xl mx-auto border-t border-border pt-6">
+        <div className="flex justify-between items-center">
+          <span className="text-[11px] text-text-subtle font-mono">
+            2026
+          </span>
+          <span className="text-[11px] text-text-subtle font-mono">
+            Built with React
+          </span>
+        </div>
       </footer>
     </div>
   )
