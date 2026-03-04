@@ -2,6 +2,14 @@ import { useEffect, useRef } from 'react'
 
 const projects = [
   {
+    name: 'Air Composer',
+    tagline: 'Play a theremin and talk box with your hands using just a webcam. No installs. Runs in the browser.',
+    stack: ['TypeScript', 'MediaPipe', 'Web Audio API'],
+    status: 'Live',
+    color: 'var(--color-shooter)',
+    url: 'https://air-composer.michaelpyon.com',
+  },
+  {
     name: 'Subway Shame',
     tagline: 'Real-time NYC subway reliability scores. Pulls live MTA feeds, calculates a shame score per line, and tells you if your commute is about to hurt.',
     stack: ['Python', 'Flask', 'MTA API'],
@@ -150,10 +158,7 @@ export default function App() {
         </p>
         <div className="max-w-lg space-y-4">
           <p className="text-text-muted text-sm leading-relaxed">
-            Day job: strategy and ops at Xbox, mostly focused on Halo. These 5 projects exist because I kept running into problems I couldn't find good tools for.
-          </p>
-          <p className="text-text-muted text-sm leading-relaxed">
-            Brooklyn-based. Into live service games, data products, and building things that actually work (not just look good in a screenshot).
+            Strategy at Xbox, focused on Halo. Based in Brooklyn.
           </p>
         </div>
 
