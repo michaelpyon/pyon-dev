@@ -1,173 +1,74 @@
-import { useEffect, useRef } from 'react'
+import { useState, useCallback } from "react"
+import Globe from "./components/Globe"
+import Sidebar from "./components/Sidebar"
+import stores from "./data/stores"
 
-const projects = [
-  {
-    name: 'ShooterDigest',
-    tagline: 'Weekly intelligence briefing for competitive FPS games. Aggregates Steam concurrents, Reddit sentiment, and press coverage into a single digestible report.',
-    stack: ['Python', 'Flask', 'Steam API', 'Reddit API'],
-    status: 'Live',
-    color: 'var(--color-shooter)',
-    url: 'https://shooter.michaelpyon.com',
-  },
-  {
-    name: 'Air Composer',
-    tagline: 'Play a theremin and talk box with your hands using just a webcam. No installs. Runs in the browser.',
-    stack: ['TypeScript', 'MediaPipe', 'Web Audio API'],
-    status: 'Live',
-    color: 'var(--color-shooter)',
-    url: 'https://air-composer.michaelpyon.com',
-  },
+// Notable vinyl cities to randomly pin
+const RANDOM_LOCATIONS = [
+  { lat: 40.7128, lng: -74.006, label: "New York" },
+  { lat: 51.5074, lng: -0.1278, label: "London" },
+  { lat: 35.6762, lng: 139.6503, label: "Tokyo" },
+  { lat: 52.52, lng: 13.405, label: "Berlin" },
+  { lat: -37.8136, lng: 144.9631, label: "Melbourne" },
+  { lat: 48.8566, lng: 2.3522, label: "Paris" },
+  { lat: 45.5231, lng: -122.6765, label: "Portland" },
+  { lat: 18.0120, lng: -76.7936, label: "Kingston" },
+  { lat: 6.5244, lng: 3.3792, label: "Lagos" },
+  { lat: 36.1627, lng: -86.7816, label: "Nashville" },
+  { lat: -23.5505, lng: -46.6333, label: "São Paulo" },
+  { lat: 37.5665, lng: 126.978, label: "Seoul" },
+  { lat: 23.1136, lng: -82.3666, label: "Havana" },
+  { lat: 34.0522, lng: -118.2437, label: "Los Angeles" },
+  { lat: 41.8781, lng: -87.6298, label: "Chicago" },
+  { lat: 55.7558, lng: 37.6173, label: "Moscow" },
+  { lat: 28.6139, lng: 77.209, label: "New Delhi" },
+  { lat: -33.8688, lng: 151.2093, label: "Sydney" },
 ]
 
-function Card({ project, index }) {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('animate-fade-up')
-          el.style.animationDelay = `${400 + index * 100}ms`
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [index])
-
-  return (
-    <a
-      ref={ref}
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="card-stripe block rounded-lg border border-border bg-surface pl-5 pr-6 py-5 transition-all duration-300 hover:bg-surface-hover hover:border-border-hover group"
-      style={{
-        opacity: 0,
-        '--stripe-color': project.color,
-      }}
-    >
-      <div className="flex items-baseline justify-between mb-2">
-        <div className="flex items-baseline gap-3">
-          <span className="text-text-subtle text-xs font-mono tabular-nums">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <h2
-            className="text-base font-semibold tracking-tight sm:text-lg"
-            style={{ color: project.color }}
-          >
-            {project.name}
-          </h2>
-        </div>
-        <span
-          className="text-[10px] font-medium tracking-wide uppercase shrink-0 ml-3"
-          style={{
-            color: project.status === 'Live' ? '#22c55e' : '#525252',
-          }}
-        >
-          {project.status}
-        </span>
-      </div>
-
-      <p className="text-text-muted text-sm leading-relaxed mb-4 ml-7">
-        {project.tagline}
-      </p>
-
-      <div className="flex flex-wrap gap-1.5 ml-7">
-        {project.stack.map((tech) => (
-          <span
-            key={tech}
-            className="text-[10px] text-text-subtle tracking-wide px-2 py-0.5 rounded border border-border"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    </a>
-  )
-}
-
 export default function App() {
+  const [droppedPin, setDroppedPin] = useState(null)
+  const [selectedStore, setSelectedStore] = useState(null)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  const handlePinDrop = useCallback(({ lat, lng }) => {
+    setDroppedPin({ lat, lng })
+    setSelectedStore(null)
+    setSidebarOpen(true)
+  }, [])
+
+  const handleStoreClick = useCallback((store) => {
+    setSelectedStore(store)
+    setDroppedPin({ lat: store.lat, lng: store.lng })
+    setSidebarOpen(true)
+  }, [])
+
+  const handleRandomPin = useCallback(() => {
+    const loc = RANDOM_LOCATIONS[Math.floor(Math.random() * RANDOM_LOCATIONS.length)]
+    // Add a bit of randomness so it doesn't feel repetitive
+    const lat = loc.lat + (Math.random() - 0.5) * 2
+    const lng = loc.lng + (Math.random() - 0.5) * 2
+    handlePinDrop({ lat, lng })
+  }, [handlePinDrop])
+
+  const toggleSidebar = useCallback(() => {
+    setSidebarOpen((prev) => !prev)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-bg">
-      {/* Hero */}
-      <header className="px-6 pt-16 pb-20 max-w-2xl mx-auto sm:pt-24 sm:pb-28">
-        <h1
-          className="font-display text-5xl sm:text-7xl text-text tracking-tight leading-[0.95] mb-6 animate-fade-up"
-          style={{ animationDelay: '200ms' }}
-        >
-          Michael Pyon
-        </h1>
-      </header>
-
-      {/* Projects */}
-      <main className="px-6 max-w-2xl mx-auto">
-        <p
-          className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
-          style={{ animationDelay: '500ms' }}
-        >
-          Projects
-        </p>
-        <div className="grid gap-3">
-          {projects.map((project, i) => (
-            <Card key={project.name} project={project} index={i} />
-          ))}
-        </div>
-      </main>
-
-      {/* About */}
-      <section className="px-6 max-w-2xl mx-auto mt-24 mb-20">
-        <p className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6">
-          About
-        </p>
-        <div className="max-w-lg space-y-4">
-          <p className="text-text-muted text-sm leading-relaxed">
-            Strategy and ops in gaming. Building things on the side. Based in Brooklyn.
-          </p>
-        </div>
-
-        {/* Contact links */}
-        <div className="flex gap-6 mt-8">
-          <a
-            href="https://github.com/michaelpyon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/michaelpyon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="mailto:michaelpyon@gmail.com"
-            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
-          >
-            Email
-          </a>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="px-6 pb-10 max-w-2xl mx-auto border-t border-border pt-6">
-        <div className="flex justify-between items-center">
-          <span className="text-[11px] text-text-subtle font-mono">
-            2026
-          </span>
-          <span className="text-[11px] text-text-subtle font-mono">
-            Built with React
-          </span>
-        </div>
-      </footer>
+    <div className="app">
+      <Globe
+        onPinDrop={handlePinDrop}
+        onStoreClick={handleStoreClick}
+        droppedPin={droppedPin}
+      />
+      <Sidebar
+        droppedPin={droppedPin}
+        selectedStore={selectedStore}
+        onStoreClick={handleStoreClick}
+        onRandomPin={handleRandomPin}
+        isOpen={sidebarOpen}
+        onToggle={toggleSidebar}
+      />
     </div>
   )
 }
