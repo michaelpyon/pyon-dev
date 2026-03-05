@@ -1,16 +1,40 @@
-# React + Vite
+# Concert Prep
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Know every song before the show. Search for an artist, see their recent setlists from [setlist.fm](https://www.setlist.fm/), and generate a YouTube playlist to prepare for your next concert.
 
-Currently, two official plugins are available:
+## How It Works
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Search** for an artist by name
+2. **Pick setlists** — select one or more recent shows to see what they've been playing
+3. **Generate playlist** — we find each song on YouTube and give you a one-click playlist
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org/) 18+
+- A [setlist.fm API key](https://api.setlist.fm/docs/1.0/index.html) (free)
+- A [YouTube Data API v3 key](https://console.cloud.google.com/apis/credentials) (free tier)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Local Development
+
+```bash
+npm install
+cp .env.example .env    # then fill in your API keys
+npm run dev
+```
+
+### Deploy to Vercel
+
+```bash
+vercel
+# Set environment variables in Vercel dashboard:
+#   SETLISTFM_API_KEY
+#   YOUTUBE_API_KEY
+```
+
+## Tech Stack
+
+- **Frontend**: React 19, Tailwind CSS 4, Vite 7
+- **Backend**: Vercel Serverless Functions
+- **APIs**: setlist.fm REST API, YouTube Data API v3
