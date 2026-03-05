@@ -1,170 +1,201 @@
-import { useEffect, useRef } from 'react'
+import { useState, useMemo } from 'react'
+import { blocks } from './data/blocks'
+import BlockCard from './components/BlockCard'
+import BlockDetail from './components/BlockDetail'
 
-const projects = [
-  {
-    name: 'ShooterDigest',
-    tagline: 'Weekly intelligence briefing for competitive FPS games. Aggregates Steam concurrents, Reddit sentiment, and press coverage into a single digestible report.',
-    stack: ['Python', 'Flask', 'Steam API', 'Reddit API'],
-    status: 'Live',
-    color: 'var(--color-shooter)',
-    url: 'https://shooter.michaelpyon.com',
-  },
-  {
-    name: 'Air Composer',
-    tagline: 'Play a theremin and talk box with your hands using just a webcam. No installs. Runs in the browser.',
-    stack: ['TypeScript', 'MediaPipe', 'Web Audio API'],
-    status: 'Live',
-    color: 'var(--color-shooter)',
-    url: 'https://air-composer.michaelpyon.com',
-  },
-]
-
-function Card({ project, index }) {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('animate-fade-up')
-          el.style.animationDelay = `${400 + index * 100}ms`
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [index])
-
+function SearchBar({ value, onChange }) {
   return (
-    <a
-      ref={ref}
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="card-stripe block rounded-lg border border-border bg-surface pl-5 pr-6 py-5 transition-all duration-300 hover:bg-surface-hover hover:border-border-hover group"
-      style={{
-        opacity: 0,
-        '--stripe-color': project.color,
-      }}
-    >
-      <div className="flex items-baseline justify-between mb-2">
-        <div className="flex items-baseline gap-3">
-          <span className="text-text-subtle text-xs font-mono tabular-nums">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <h2
-            className="text-base font-semibold tracking-tight sm:text-lg"
-            style={{ color: project.color }}
-          >
-            {project.name}
-          </h2>
-        </div>
-        <span
-          className="text-[10px] font-medium tracking-wide uppercase shrink-0 ml-3"
-          style={{
-            color: project.status === 'Live' ? '#22c55e' : '#525252',
-          }}
-        >
-          {project.status}
-        </span>
-      </div>
-
-      <p className="text-text-muted text-sm leading-relaxed mb-4 ml-7">
-        {project.tagline}
-      </p>
-
-      <div className="flex flex-wrap gap-1.5 ml-7">
-        {project.stack.map((tech) => (
-          <span
-            key={tech}
-            className="text-[10px] text-text-subtle tracking-wide px-2 py-0.5 rounded border border-border"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    </a>
+    <div className="relative">
+      <svg
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-subtle"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Search by neighborhood, street, or borough..."
+        className="w-full bg-surface border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-text placeholder:text-text-subtle focus:outline-none focus:border-border-hover transition-colors"
+      />
+    </div>
   )
 }
 
+function FilterChips({ active, onChange, options }) {
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {options.map((opt) => (
+        <button
+          key={opt.value}
+          onClick={() => onChange(opt.value)}
+          className={`text-[11px] font-mono tracking-wide px-3 py-1 rounded-full border transition-colors cursor-pointer ${
+            active === opt.value
+              ? 'border-text-subtle text-text bg-surface-hover'
+              : 'border-border text-text-subtle hover:border-border-hover hover:text-text-muted'
+          }`}
+        >
+          {opt.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+const SORT_OPTIONS = [
+  { value: 'score', label: 'Top Score' },
+  { value: 'cheapest', label: 'Cheapest' },
+  { value: 'quietest', label: 'Quietest' },
+  { value: 'transit', label: 'Best Transit' },
+  { value: 'food', label: 'Best Food' },
+]
+
+const BOROUGH_OPTIONS = [
+  { value: 'all', label: 'All' },
+  { value: 'Brooklyn', label: 'Brooklyn' },
+  { value: 'Manhattan', label: 'Manhattan' },
+]
+
 export default function App() {
+  const [query, setQuery] = useState('')
+  const [sort, setSort] = useState('score')
+  const [borough, setBorough] = useState('all')
+  const [selected, setSelected] = useState(null)
+  const [mobileShowDetail, setMobileShowDetail] = useState(false)
+
+  const filtered = useMemo(() => {
+    let result = blocks
+
+    // Borough filter
+    if (borough !== 'all') {
+      result = result.filter((b) => b.borough === borough)
+    }
+
+    // Search filter
+    if (query.trim()) {
+      const q = query.toLowerCase()
+      result = result.filter(
+        (b) =>
+          b.neighborhood.toLowerCase().includes(q) ||
+          b.name.toLowerCase().includes(q) ||
+          b.borough.toLowerCase().includes(q)
+      )
+    }
+
+    // Sort
+    const sorters = {
+      score: (a, b) => b.blockScore - a.blockScore,
+      cheapest: (a, b) => a.streetEasy.medianRent1BR - b.streetEasy.medianRent1BR,
+      quietest: (a, b) => b.noise.score - a.noise.score,
+      transit: (a, b) => b.subway.score - a.subway.score,
+      food: (a, b) => b.restaurants.score - a.restaurants.score,
+    }
+
+    return [...result].sort(sorters[sort])
+  }, [query, sort, borough])
+
+  const handleSelect = (block) => {
+    setSelected(block)
+    setMobileShowDetail(true)
+  }
+
+  const handleClose = () => {
+    setMobileShowDetail(false)
+  }
+
   return (
     <div className="min-h-screen bg-bg">
-      {/* Hero */}
-      <header className="px-6 pt-16 pb-20 max-w-2xl mx-auto sm:pt-24 sm:pb-28">
-        <h1
-          className="font-display text-5xl sm:text-7xl text-text tracking-tight leading-[0.95] mb-6 animate-fade-up"
-          style={{ animationDelay: '200ms' }}
-        >
-          Michael Pyon
-        </h1>
-      </header>
-
-      {/* Projects */}
-      <main className="px-6 max-w-2xl mx-auto">
-        <p
-          className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
-          style={{ animationDelay: '500ms' }}
-        >
-          Projects
-        </p>
-        <div className="grid gap-3">
-          {projects.map((project, i) => (
-            <Card key={project.name} project={project} index={i} />
-          ))}
-        </div>
-      </main>
-
-      {/* About */}
-      <section className="px-6 max-w-2xl mx-auto mt-24 mb-20">
-        <p className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6">
-          About
-        </p>
-        <div className="max-w-lg space-y-4">
-          <p className="text-text-muted text-sm leading-relaxed">
-            Strategy and ops in gaming. Building things on the side. Based in Brooklyn.
+      {/* Header */}
+      <header className="border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
+          <div className="flex items-baseline gap-3">
+            <h1 className="text-xl sm:text-2xl font-semibold text-text tracking-tight">
+              BlockScore
+            </h1>
+            <span className="text-[10px] font-mono text-text-subtle tracking-widest uppercase">
+              NYC
+            </span>
+          </div>
+          <p className="text-xs text-text-muted mt-1">
+            Apartment hunting intelligence for Brooklyn &amp; Manhattan
           </p>
         </div>
+      </header>
 
-        {/* Contact links */}
-        <div className="flex gap-6 mt-8">
-          <a
-            href="https://github.com/michaelpyon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/michaelpyon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="mailto:michaelpyon@gmail.com"
-            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
-          >
-            Email
-          </a>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
+        {/* Search + Filters */}
+        <div className="space-y-3 mb-5">
+          <SearchBar value={query} onChange={setQuery} />
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <FilterChips active={borough} onChange={setBorough} options={BOROUGH_OPTIONS} />
+            <FilterChips active={sort} onChange={setSort} options={SORT_OPTIONS} />
+          </div>
         </div>
-      </section>
+
+        {/* Results count */}
+        <p className="text-[11px] text-text-subtle font-mono mb-4">
+          {filtered.length} block{filtered.length !== 1 ? 's' : ''} found
+        </p>
+
+        {/* Main layout */}
+        <div className="flex gap-6">
+          {/* Block list */}
+          <div
+            className={`w-full lg:w-[380px] shrink-0 ${
+              mobileShowDetail ? 'hidden lg:block' : ''
+            }`}
+          >
+            <div className="grid gap-3">
+              {filtered.map((block) => (
+                <BlockCard
+                  key={block.id}
+                  block={block}
+                  onClick={handleSelect}
+                  isSelected={selected?.id === block.id}
+                />
+              ))}
+              {filtered.length === 0 && (
+                <div className="text-center py-12">
+                  <p className="text-sm text-text-muted">No blocks match your search.</p>
+                  <p className="text-xs text-text-subtle mt-1">Try a different neighborhood or filter.</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Detail panel */}
+          <div
+            className={`flex-1 min-w-0 ${
+              mobileShowDetail ? '' : 'hidden lg:block'
+            }`}
+          >
+            {selected ? (
+              <div className="lg:sticky lg:top-6">
+                <BlockDetail block={selected} onClose={handleClose} />
+              </div>
+            ) : (
+              <div className="hidden lg:flex items-center justify-center h-64 rounded-lg border border-border border-dashed">
+                <p className="text-sm text-text-subtle">
+                  Select a block to see detailed scores
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
-      <footer className="px-6 pb-10 max-w-2xl mx-auto border-t border-border pt-6">
-        <div className="flex justify-between items-center">
-          <span className="text-[11px] text-text-subtle font-mono">
-            2026
+      <footer className="border-t border-border mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <span className="text-[10px] text-text-subtle font-mono">
+            Data: StreetEasy, Walk Score, NYC 311, Google Places (demo)
           </span>
-          <span className="text-[11px] text-text-subtle font-mono">
-            Built with React
+          <span className="text-[10px] text-text-subtle font-mono">
+            Built by Michael Pyon
           </span>
         </div>
       </footer>
