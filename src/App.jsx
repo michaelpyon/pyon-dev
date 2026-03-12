@@ -15,7 +15,7 @@ const projects = [
     stack: ['React', 'MTA API', 'Node.js'],
     status: 'Live',
     color: '#fb923c',
-    url: 'https://subwayshame.michaelpyon.com',
+    url: 'https://subway.michaelpyon.com',
   },
   {
     name: 'Random Pin Cuisine',
