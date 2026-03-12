@@ -3,19 +3,51 @@ import { useEffect, useRef } from 'react'
 const projects = [
   {
     name: 'ShooterDigest',
-    tagline: 'Weekly intelligence briefing for competitive FPS games. Aggregates Steam concurrents, Reddit sentiment, and press coverage into a single digestible report.',
+    tagline: 'Weekly intelligence briefing for competitive FPS games. Steam concurrents, Reddit sentiment, and press coverage in one digest.',
     stack: ['Python', 'Flask', 'Steam API', 'Reddit API'],
     status: 'Live',
-    color: 'var(--color-shooter)',
+    color: '#4ade80',
     url: 'https://shooter.michaelpyon.com',
   },
   {
+    name: 'Subway Shame',
+    tagline: 'Score your MTA commute in real time. Live train data, delay tracking, and a brutally honest performance rating for every ride.',
+    stack: ['React', 'MTA API', 'Node.js'],
+    status: 'Live',
+    color: '#fb923c',
+    url: 'https://subwayshame.michaelpyon.com',
+  },
+  {
+    name: 'Random Pin Cuisine',
+    tagline: 'Drop a pin anywhere in the world and discover what people actually eat there. Powered by OpenStreetMap — no API key required.',
+    stack: ['React', 'Leaflet', 'Overpass API'],
+    status: 'Live',
+    color: '#f472b6',
+    url: 'https://random-pin.michaelpyon.com',
+  },
+  {
+    name: 'CrateDigger',
+    tagline: 'Drop a pin on a record store anywhere in the world. Discover local genres, find nearby vinyl shops, and surface staff picks.',
+    stack: ['React', 'Discogs API', 'Leaflet'],
+    status: 'Live',
+    color: '#22d3ee',
+    url: 'https://vinyl-discovery.vercel.app',
+  },
+  {
     name: 'Air Composer',
-    tagline: 'Play a theremin and talk box with your hands using just a webcam. No installs. Runs in the browser.',
+    tagline: 'Play a theremin and talk box with your hands using just a webcam. No installs. Runs entirely in the browser.',
     stack: ['TypeScript', 'MediaPipe', 'Web Audio API'],
     status: 'Live',
-    color: 'var(--color-shooter)',
+    color: '#a78bfa',
     url: 'https://air-composer.michaelpyon.com',
+  },
+  {
+    name: 'VintageMap',
+    tagline: 'Explore historical maps layered over the modern world. Navigate centuries of urban change, territory shifts, and forgotten places.',
+    stack: ['React', 'Leaflet', 'Historical Tile APIs'],
+    status: 'Coming soon',
+    color: '#fbbf24',
+    url: null,
   },
 ]
 
@@ -42,10 +74,10 @@ function Card({ project, index }) {
   return (
     <a
       ref={ref}
-      href={project.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="card-stripe block rounded-lg border border-border bg-surface pl-5 pr-6 py-5 transition-all duration-300 hover:bg-surface-hover hover:border-border-hover group"
+      href={project.url || undefined}
+      target={project.url ? '_blank' : undefined}
+      rel={project.url ? 'noopener noreferrer' : undefined}
+      className={`card-stripe block rounded-lg border border-border bg-surface pl-5 pr-6 py-5 transition-all duration-300 group ${project.url ? 'hover:bg-surface-hover hover:border-border-hover cursor-pointer' : 'cursor-default opacity-60'}`}
       style={{
         opacity: 0,
         '--stripe-color': project.color,
@@ -126,12 +158,20 @@ export default function App() {
         </p>
         <div className="max-w-lg space-y-4">
           <p className="text-text-muted text-sm leading-relaxed">
-            Strategy and ops in gaming. Building things on the side. Based in Brooklyn.
+            Strategy and ops in gaming by day. Building things on nights and weekends. Based in Brooklyn, NY.
           </p>
         </div>
 
         {/* Contact links */}
         <div className="flex gap-6 mt-8">
+          <a
+            href="https://x.com/michaelpyon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+          >
+            X
+          </a>
           <a
             href="https://github.com/michaelpyon"
             target="_blank"
