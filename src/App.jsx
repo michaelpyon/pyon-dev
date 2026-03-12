@@ -35,8 +35,8 @@ const projects = [
   },
   {
     name: 'VintageMap',
-    tagline: 'Explore historical maps layered over the modern world. Navigate centuries of urban change, territory shifts, and forgotten places.',
-    stack: ['React', 'Leaflet', 'Historical Tile APIs'],
+    tagline: 'Enter a meaningful year and find the best wines from that vintage. Quality scores, tasting notes, and recommendations across 20 wine regions.',
+    stack: ['React', 'Leaflet', 'TypeScript'],
     status: 'Coming soon',
     color: '#fbbf24',
     url: null,
