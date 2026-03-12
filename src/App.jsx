@@ -29,9 +29,9 @@ const projects = [
     name: 'CrateDigger',
     tagline: 'Drop a pin on a record store anywhere in the world. Discover local genres, find nearby vinyl shops, and surface staff picks.',
     stack: ['React', 'Discogs API', 'Leaflet'],
-    status: 'Live',
+    status: 'Coming soon',
     color: '#22d3ee',
-    url: 'https://vinyl-discovery.vercel.app',
+    url: null,
   },
   {
     name: 'VintageMap',
