@@ -10,12 +10,12 @@ const projects = [
     url: 'https://shooter.michaelpyon.com',
   },
   {
-    name: 'Subway Shame',
-    tagline: 'Score your MTA commute in real time. Live train data, delay tracking, and a brutally honest performance rating for every ride.',
+    name: 'The Low Line',
+    tagline: 'Real-time performance scores for every NYC subway line. F, M, and L ranked daily. History tracked over time.',
     stack: ['React', 'MTA API', 'Node.js'],
     status: 'Live',
     color: '#fb923c',
-    url: 'https://subway.michaelpyon.com',
+    url: 'https://subway.pyon.dev',
   },
   {
     name: 'Random Pin Cuisine',
@@ -34,6 +34,17 @@ const projects = [
     url: 'https://vinyl-discovery.vercel.app',
   },
   {
+    name: 'VintageMap',
+    tagline: 'Explore historical maps layered over the modern world. Navigate centuries of urban change, territory shifts, and forgotten places.',
+    stack: ['React', 'Leaflet', 'Historical Tile APIs'],
+    status: 'Coming soon',
+    color: '#fbbf24',
+    url: null,
+  },
+]
+
+const musicProjects = [
+  {
     name: 'Air Composer',
     tagline: 'Play a theremin and talk box with your hands using just a webcam. No installs. Runs entirely in the browser.',
     stack: ['TypeScript', 'MediaPipe', 'Web Audio API'],
@@ -42,12 +53,20 @@ const projects = [
     url: 'https://air-composer.michaelpyon.com',
   },
   {
-    name: 'VintageMap',
-    tagline: 'Explore historical maps layered over the modern world. Navigate centuries of urban change, territory shifts, and forgotten places.',
-    stack: ['React', 'Leaflet', 'Historical Tile APIs'],
-    status: 'Coming soon',
-    color: '#fbbf24',
-    url: null,
+    name: 'Popup Beat Panic',
+    tagline: 'Beat-based browser game. Hit the pads before they disappear. Rhythm meets reflex.',
+    stack: ['JavaScript', 'Web Audio API', 'Canvas'],
+    status: 'Live',
+    color: '#f43f5e',
+    url: 'https://michaelpyon.github.io/popup-beat-panic/',
+  },
+  {
+    name: 'Keyboard Drummer',
+    tagline: 'Turn your keyboard into a drum kit. Map keys to samples, build patterns, record your session.',
+    stack: ['JavaScript', 'Web Audio API'],
+    status: 'Live',
+    color: '#38bdf8',
+    url: 'https://michaelpyon.github.io/keyboard-drummer/',
   },
 ]
 
@@ -146,6 +165,19 @@ export default function App() {
         </p>
         <div className="grid gap-3">
           {projects.map((project, i) => (
+            <Card key={project.name} project={project} index={i} />
+          ))}
+        </div>
+
+        {/* Music */}
+        <p
+          className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 mt-14 animate-fade-in"
+          style={{ animationDelay: '600ms' }}
+        >
+          Music
+        </p>
+        <div className="grid gap-3">
+          {musicProjects.map((project, i) => (
             <Card key={project.name} project={project} index={i} />
           ))}
         </div>
