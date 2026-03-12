@@ -146,7 +146,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-bg">
       {/* Hero */}
-      <header className="px-6 pt-16 pb-20 max-w-2xl mx-auto sm:pt-24 sm:pb-28">
+      <header className="px-6 pt-16 pb-20 max-w-5xl mx-auto sm:pt-24 sm:pb-28">
         <h1
           className="font-display text-5xl sm:text-7xl text-text tracking-tight leading-[0.95] mb-6 animate-fade-up"
           style={{ animationDelay: '200ms' }}
@@ -155,36 +155,45 @@ export default function App() {
         </h1>
       </header>
 
-      {/* Projects */}
-      <main className="px-6 max-w-2xl mx-auto">
-        <p
-          className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
-          style={{ animationDelay: '500ms' }}
-        >
-          Projects
-        </p>
-        <div className="grid gap-3">
-          {projects.map((project, i) => (
-            <Card key={project.name} project={project} index={i} />
-          ))}
-        </div>
+      {/* Projects + Music */}
+      <main className="px-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-x-12 gap-y-14">
 
-        {/* Music */}
-        <p
-          className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 mt-14 animate-fade-in"
-          style={{ animationDelay: '600ms' }}
-        >
-          Music
-        </p>
-        <div className="grid gap-3">
-          {musicProjects.map((project, i) => (
-            <Card key={project.name} project={project} index={i} />
-          ))}
+          {/* Projects column */}
+          <div>
+            <p
+              className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
+              style={{ animationDelay: '500ms' }}
+            >
+              Projects
+            </p>
+            <div className="grid gap-3">
+              {projects.map((project, i) => (
+                <Card key={project.name} project={project} index={i} />
+              ))}
+            </div>
+          </div>
+
+          {/* Music column */}
+          <div>
+            <p
+              className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
+              style={{ animationDelay: '600ms' }}
+            >
+              Music
+            </p>
+            <div className="grid gap-3">
+              {musicProjects.map((project, i) => (
+                <Card key={project.name} project={project} index={i} />
+              ))}
+            </div>
+          </div>
+
         </div>
       </main>
 
       {/* About */}
-      <section className="px-6 max-w-2xl mx-auto mt-24 mb-20">
+      <section className="px-6 max-w-5xl mx-auto mt-24 mb-20">
         <p className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6">
           About
         </p>
@@ -230,7 +239,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="px-6 pb-10 max-w-2xl mx-auto border-t border-border pt-6">
+      <footer className="px-6 pb-10 max-w-5xl mx-auto border-t border-border pt-6">
         <div className="flex justify-between items-center">
           <span className="text-[11px] text-text-subtle font-mono">
             2026
