@@ -122,7 +122,7 @@ function Card({ project, index }) {
       <div className="pl-5 pr-6 py-5">
         <div className="flex items-baseline justify-between mb-2">
           <div className="flex items-baseline gap-3">
-            <span className="text-text-subtle text-xs font-mono tabular-nums">
+            <span className="text-text-subtle text-xs font-mono tabular-nums" style={{ fontFamily: 'var(--font-mono)' }}>
               {String(index + 1).padStart(2, '0')}
             </span>
             <h2
@@ -229,6 +229,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+            style={{ fontFamily: 'var(--font-mono)' }}
           >
             X
           </a>
@@ -237,6 +238,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+            style={{ fontFamily: 'var(--font-mono)' }}
           >
             GitHub
           </a>
@@ -245,12 +247,14 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+            style={{ fontFamily: 'var(--font-mono)' }}
           >
             LinkedIn
           </a>
           <a
             href="mailto:michaelpyon@gmail.com"
             className="text-text-subtle text-xs font-mono tracking-wide hover:text-text transition-colors"
+            style={{ fontFamily: 'var(--font-mono)' }}
           >
             Email
           </a>
@@ -260,10 +264,10 @@ export default function App() {
       {/* Footer */}
       <footer className="px-6 pb-10 max-w-5xl mx-auto border-t border-border pt-6">
         <div className="flex justify-between items-center">
-          <span className="text-[11px] text-text-subtle font-mono">
+          <span className="text-[11px] text-text-subtle font-mono" style={{ fontFamily: 'var(--font-mono)' }}>
             2026
           </span>
-          <span className="text-[11px] text-text-subtle font-mono">
+          <span className="text-[11px] text-text-subtle font-mono" style={{ fontFamily: 'var(--font-mono)' }}>
             Built with React
           </span>
         </div>

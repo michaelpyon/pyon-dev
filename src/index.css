@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+:root {
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
 @theme {
   --color-bg: #0a0a0a;
   --color-surface: #111111;
@@ -20,7 +26,7 @@
 html {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,7 +37,7 @@ body {
 
 /* Editorial serif for display headings */
 .font-display {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: var(--font-display);
 }
 
 /* Staggered entrance animations */
