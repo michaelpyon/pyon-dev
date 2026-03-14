@@ -8,6 +8,7 @@ const projects = [
     status: 'Live',
     color: '#4ade80',
     url: 'https://shooter.michaelpyon.com',
+    image: '/cards/shooterdigest.png',
   },
   {
     name: 'The Low Line',
@@ -16,6 +17,7 @@ const projects = [
     status: 'Live',
     color: '#fb923c',
     url: 'https://subway.michaelpyon.com',
+    image: '/cards/low-line.png',
   },
   {
     name: 'Random Pin Cuisine',
@@ -24,6 +26,7 @@ const projects = [
     status: 'Live',
     color: '#f472b6',
     url: 'https://random-pin.michaelpyon.com',
+    image: '/cards/random-pin.png',
   },
   {
     name: 'CrateDigger',
@@ -51,6 +54,7 @@ const musicProjects = [
     status: 'Live',
     color: '#a78bfa',
     url: 'https://air-composer.michaelpyon.com',
+    image: '/cards/air-composer.png',
   },
   {
     name: 'Popup Beat Panic',
@@ -59,6 +63,7 @@ const musicProjects = [
     status: 'Live',
     color: '#f43f5e',
     url: 'https://michaelpyon.github.io/popup-beat-panic/',
+    image: '/cards/popup-beat-panic.png',
   },
   {
     name: 'Keyboard Drummer',
@@ -67,6 +72,7 @@ const musicProjects = [
     status: 'Live',
     color: '#38bdf8',
     url: 'https://michaelpyon.github.io/keyboard-drummer/',
+    image: '/cards/keyboard-drummer.png',
   },
 ]
 
@@ -96,47 +102,60 @@ function Card({ project, index }) {
       href={project.url || undefined}
       target={project.url ? '_blank' : undefined}
       rel={project.url ? 'noopener noreferrer' : undefined}
-      className={`card-stripe block rounded-lg border border-border bg-surface pl-5 pr-6 py-5 transition-all duration-300 group ${project.url ? 'hover:bg-surface-hover hover:border-border-hover cursor-pointer' : 'cursor-default opacity-60'}`}
+      className={`card-stripe block rounded-lg border border-border bg-surface transition-all duration-300 group overflow-hidden ${project.url ? 'hover:bg-surface-hover hover:border-border-hover cursor-pointer' : 'cursor-default opacity-60'}`}
       style={{
         opacity: 0,
         '--stripe-color': project.color,
       }}
     >
-      <div className="flex items-baseline justify-between mb-2">
-        <div className="flex items-baseline gap-3">
-          <span className="text-text-subtle text-xs font-mono tabular-nums">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <h2
-            className="text-base font-semibold tracking-tight sm:text-lg"
-            style={{ color: project.color }}
-          >
-            {project.name}
-          </h2>
+      {project.image && (
+        <div className="w-full overflow-hidden">
+          <img
+            src={project.image}
+            alt={`${project.name} preview`}
+            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
         </div>
-        <span
-          className="text-[10px] font-medium tracking-wide uppercase shrink-0 ml-3"
-          style={{
-            color: project.status === 'Live' ? '#22c55e' : '#525252',
-          }}
-        >
-          {project.status}
-        </span>
-      </div>
+      )}
 
-      <p className="text-text-muted text-sm leading-relaxed mb-4 ml-7">
-        {project.tagline}
-      </p>
-
-      <div className="flex flex-wrap gap-1.5 ml-7">
-        {project.stack.map((tech) => (
+      <div className="pl-5 pr-6 py-5">
+        <div className="flex items-baseline justify-between mb-2">
+          <div className="flex items-baseline gap-3">
+            <span className="text-text-subtle text-xs font-mono tabular-nums">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h2
+              className="text-base font-semibold tracking-tight sm:text-lg"
+              style={{ color: project.color }}
+            >
+              {project.name}
+            </h2>
+          </div>
           <span
-            key={tech}
-            className="text-[10px] text-text-subtle tracking-wide px-2 py-0.5 rounded border border-border"
+            className="text-[10px] font-medium tracking-wide uppercase shrink-0 ml-3"
+            style={{
+              color: project.status === 'Live' ? '#22c55e' : '#525252',
+            }}
           >
-            {tech}
+            {project.status}
           </span>
-        ))}
+        </div>
+
+        <p className="text-text-muted text-sm leading-relaxed mb-4 ml-7">
+          {project.tagline}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 ml-7">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="text-[10px] text-text-subtle tracking-wide px-2 py-0.5 rounded border border-border"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </a>
   )
