@@ -180,12 +180,12 @@ export default function App() {
 
           {/* Projects column */}
           <div>
-            <p
-              className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
+            <h2
+              className="font-display text-2xl text-text mb-6 animate-fade-in"
               style={{ animationDelay: '500ms' }}
             >
               Projects
-            </p>
+            </h2>
             <div className="grid gap-3">
               {projects.map((project, i) => (
                 <Card key={project.name} project={project} index={i} />
@@ -195,12 +195,12 @@ export default function App() {
 
           {/* Music column */}
           <div>
-            <p
-              className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6 animate-fade-in"
+            <h2
+              className="font-display text-2xl text-text mb-6 animate-fade-in"
               style={{ animationDelay: '600ms' }}
             >
               Music
-            </p>
+            </h2>
             <div className="grid gap-3">
               {musicProjects.map((project, i) => (
                 <Card key={project.name} project={project} index={i} />
@@ -213,9 +213,9 @@ export default function App() {
 
       {/* About */}
       <section className="px-6 max-w-5xl mx-auto mt-24 mb-20">
-        <p className="text-text-subtle text-xs font-mono tracking-widest uppercase mb-6">
+        <h2 className="font-display text-2xl text-text mb-6">
           About
-        </p>
+        </h2>
         <div className="max-w-lg space-y-4">
           <p className="text-text-muted text-sm leading-relaxed">
             Strategy and ops in gaming by day. Building things on nights and weekends. Based in Brooklyn, NY.
