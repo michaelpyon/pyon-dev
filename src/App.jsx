@@ -39,10 +39,10 @@ const projects = [
   {
     name: 'VintageMap',
     tagline: 'Enter a meaningful year and find the best wines from that vintage. Quality scores, tasting notes, and recommendations across 20 wine regions.',
-    stack: ['React', 'Leaflet', 'TypeScript'],
-    status: 'Coming soon',
+    stack: ['React', 'Leaflet', 'TypeScript', 'Flask'],
+    status: 'Live',
     color: '#fbbf24',
-    url: null,
+    url: 'https://vintage.michaelpyon.com',
   },
 ]
 
