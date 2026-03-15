@@ -48,6 +48,15 @@ const projects = [
 
 const multiplayerGames = [
   {
+    name: 'Freeze Frame',
+    tagline: 'Museum heist party game. Sneak, sprint, or hide each round — but the group\'s greed shapes everyone\'s risk. Hidden security protocols change every game.',
+    stack: ['JavaScript', 'Web Audio API', 'CSS Animations'],
+    status: 'Live',
+    color: '#d4a843',
+    url: 'https://michaelpyon.github.io/Freeze-Frame-Claude/',
+    players: '2–6 players',
+  },
+  {
     name: 'Bomb Council',
     tagline: 'Pass-and-play party game. Vote to bomb a council member each round. Round events shake up the rules — immunity, double strikes, and more.',
     stack: ['React', 'TypeScript', 'Framer Motion', 'Web Audio'],
