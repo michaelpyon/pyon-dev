@@ -159,15 +159,9 @@ export default function Home() {
         <h2 className="font-display text-2xl text-text mb-6">
           About
         </h2>
-        <div className="max-w-lg space-y-4">
+        <div className="max-w-lg">
           <p className="text-text-muted text-sm leading-relaxed">
-            I work in strategy and operations in the gaming industry. On nights and weekends I build tools and experiments — mostly around music, maps, and data that I find interesting.
-          </p>
-          <p className="text-text-muted text-sm leading-relaxed">
-            Everything here is a side project. I like staying close to the product layer: writing code, designing interfaces, and shipping things end to end.
-          </p>
-          <p className="text-text-muted text-sm leading-relaxed">
-            Based in Brooklyn, NY.
+            Strategy and product in gaming. Building side projects. Brooklyn, NY.
           </p>
         </div>
 
