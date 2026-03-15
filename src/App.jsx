@@ -167,11 +167,17 @@ export default function App() {
       {/* Hero */}
       <header className="px-6 pt-16 pb-20 max-w-5xl mx-auto sm:pt-24 sm:pb-28">
         <h1
-          className="font-display text-5xl sm:text-7xl text-text tracking-tight leading-[0.95] mb-6 animate-fade-up"
+          className="font-display text-5xl sm:text-7xl text-text tracking-tight leading-[0.95] mb-4 animate-fade-up"
           style={{ animationDelay: '200ms' }}
         >
           Michael Pyon
         </h1>
+        <p
+          className="text-text-muted text-lg sm:text-xl tracking-tight animate-fade-up"
+          style={{ animationDelay: '350ms' }}
+        >
+          Strategy &amp; product in gaming. Building side projects on nights and weekends.
+        </p>
       </header>
 
       {/* Projects + Music */}
@@ -218,7 +224,13 @@ export default function App() {
         </h2>
         <div className="max-w-lg space-y-4">
           <p className="text-text-muted text-sm leading-relaxed">
-            Strategy and ops in gaming by day. Building things on nights and weekends. Based in Brooklyn, NY.
+            I work in strategy and operations in the gaming industry. On nights and weekends I build tools and experiments — mostly around music, maps, and data that I find interesting.
+          </p>
+          <p className="text-text-muted text-sm leading-relaxed">
+            Everything here is a side project. I like staying close to the product layer: writing code, designing interfaces, and shipping things end to end.
+          </p>
+          <p className="text-text-muted text-sm leading-relaxed">
+            Based in Brooklyn, NY.
           </p>
         </div>
 
