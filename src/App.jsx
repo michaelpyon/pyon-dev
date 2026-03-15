@@ -46,6 +46,36 @@ const projects = [
   },
 ]
 
+const multiplayerGames = [
+  {
+    name: 'Bomb Council',
+    tagline: 'Pass-and-play party game. Vote to bomb a council member each round. Round events shake up the rules — immunity, double strikes, and more.',
+    stack: ['React', 'TypeScript', 'Framer Motion', 'Web Audio'],
+    status: 'Live',
+    color: '#ff6b35',
+    url: 'https://bomb-council.vercel.app',
+    players: '4–8 players',
+  },
+  {
+    name: 'Eminent Domain',
+    tagline: 'Grid combat with a gentrification twist. Displace, organize, or relocate on a shrinking 8×8 city map. Last faction standing wins.',
+    stack: ['Node.js', 'Socket.IO', 'Express'],
+    status: 'Live',
+    color: '#ef4444',
+    url: 'https://eminent-domain-production.up.railway.app',
+    players: '2–4 players',
+  },
+  {
+    name: 'Kinetic Grid',
+    tagline: 'Simultaneous-turn grid combat. Dash, brace, or sidestep on a collapsing arena. Pure strategy, no luck.',
+    stack: ['Node.js', 'Socket.IO', 'Express'],
+    status: 'Live',
+    color: '#8b5cf6',
+    url: 'https://kinetic-grid-production.up.railway.app',
+    players: '2–4 players',
+  },
+]
+
 const musicProjects = [
   {
     name: 'Air Composer',
@@ -132,14 +162,21 @@ function Card({ project, index }) {
               {project.name}
             </h2>
           </div>
-          <span
-            className="text-[10px] font-medium tracking-wide uppercase shrink-0 ml-3"
-            style={{
-              color: project.status === 'Live' ? '#22c55e' : '#525252',
-            }}
-          >
-            {project.status}
-          </span>
+          <div className="flex items-center gap-2 shrink-0 ml-3">
+            {project.players && (
+              <span className="text-[10px] font-medium tracking-wide px-1.5 py-0.5 rounded border border-border text-text-muted" style={{ fontFamily: 'var(--font-mono)' }}>
+                {project.players}
+              </span>
+            )}
+            <span
+              className="text-[10px] font-medium tracking-wide uppercase"
+              style={{
+                color: project.status === 'Live' ? '#22c55e' : '#525252',
+              }}
+            >
+              {project.status}
+            </span>
+          </div>
         </div>
 
         <p className="text-text-muted text-sm leading-relaxed mb-4 ml-7">
@@ -215,6 +252,21 @@ export default function App() {
           </div>
 
         </div>
+
+        {/* Multiplayer Games */}
+        <section className="mt-14">
+          <h2
+            className="font-display text-2xl text-text mb-6 animate-fade-in"
+            style={{ animationDelay: '700ms' }}
+          >
+            Multiplayer Games
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
+            {multiplayerGames.map((project, i) => (
+              <Card key={project.name} project={project} index={i} />
+            ))}
+          </div>
+        </section>
       </main>
 
       {/* About */}
