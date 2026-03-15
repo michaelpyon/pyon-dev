@@ -92,7 +92,7 @@ export default function Home() {
           className="text-text-muted text-lg sm:text-xl tracking-tight animate-fade-up"
           style={{ animationDelay: '350ms' }}
         >
-          Strategy &amp; product in gaming. Building side projects on nights and weekends.
+          Strategy &amp; product in gaming.
         </p>
       </header>
 

@@ -176,7 +176,7 @@ export default function App() {
           className="text-text-muted text-lg sm:text-xl tracking-tight animate-fade-up"
           style={{ animationDelay: '350ms' }}
         >
-          Strategy &amp; product in gaming. Building side projects on nights and weekends.
+          Strategy &amp; product in gaming.
         </p>
       </header>
 
@@ -224,7 +224,7 @@ export default function App() {
         </h2>
         <div className="max-w-lg">
           <p className="text-text-muted text-sm leading-relaxed">
-            Strategy and product in gaming. Side projects on nights and weekends. Brooklyn, NY.
+            Strategy and product in gaming. Brooklyn, NY.
           </p>
         </div>
 
