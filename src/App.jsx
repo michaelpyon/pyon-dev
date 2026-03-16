@@ -29,20 +29,39 @@ const projects = [
     image: '/cards/random-pin.png',
   },
   {
-    name: 'CrateDigger',
-    tagline: 'Drop a pin on a record store anywhere in the world. Discover local genres, find nearby vinyl shops, and surface staff picks.',
-    stack: ['React', 'Discogs API', 'Leaflet'],
-    status: 'Coming soon',
-    color: '#22d3ee',
-    url: null,
-  },
-  {
     name: 'VintageMap',
     tagline: 'Enter a meaningful year and find the best wines from that vintage. Quality scores, tasting notes, and recommendations across 20 wine regions.',
     stack: ['React', 'Leaflet', 'TypeScript', 'Flask'],
     status: 'Live',
     color: '#fbbf24',
     url: 'https://vintage.michaelpyon.com',
+  },
+  {
+    name: 'Concert Prep',
+    tagline: 'Search any artist, pick a real setlist, and generate a YouTube playlist from the actual songs they played. Setlist data meets video search.',
+    stack: ['React', 'Setlist.fm API', 'YouTube API'],
+    status: 'Live',
+    color: '#22c55e',
+    url: 'https://concert-playlist.vercel.app',
+  },
+]
+
+const strategySims = [
+  {
+    name: 'Shock Cascade',
+    tagline: 'Explainable macro risk reasoning tool. Model geopolitical disruptions across causal dependencies, sector exposures, and portfolio overlays.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    status: 'Live',
+    color: '#38bdf8',
+    url: 'https://shock-cascade.vercel.app',
+  },
+  {
+    name: 'Studio Commander',
+    tagline: '12-turn live-ops strategy simulation. Run a fictional game studio — balance content, monetization, anti-cheat, QA, and community across competing priorities.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    status: 'Live',
+    color: '#c084fc',
+    url: 'https://studio-commander.vercel.app',
   },
 ]
 
@@ -83,6 +102,15 @@ const multiplayerGames = [
     url: 'https://kinetic-grid-production.up.railway.app',
     players: '2–4 players',
   },
+  {
+    name: 'High Roller',
+    tagline: 'Dice roller with streak multipliers, celebration effects, and snake eyes mode. Quick dopamine loops.',
+    stack: ['React', 'Tailwind CSS', 'Vite'],
+    status: 'Live',
+    color: '#f59e0b',
+    url: 'https://high-roller-eight.vercel.app',
+    players: '1+ players',
+  },
 ]
 
 const musicProjects = [
@@ -97,7 +125,7 @@ const musicProjects = [
   },
   {
     name: 'Popup Beat Panic',
-    tagline: 'Beat-based browser game. Hit the pads before they disappear. Rhythm meets reflex.',
+    tagline: 'A rhythm game disguised as an IE nightmare. Close the popups. Keep the beat. Don\'t miss.',
     stack: ['JavaScript', 'Web Audio API', 'Canvas'],
     status: 'Live',
     color: '#f43f5e',
@@ -112,6 +140,14 @@ const musicProjects = [
     color: '#38bdf8',
     url: 'https://michaelpyon.github.io/keyboard-drummer/',
     image: '/cards/keyboard-drummer.png',
+  },
+  {
+    name: 'Lockstep',
+    tagline: 'Rhythm marching game. Hit space on the beat — but the beat flips between on-beat and off-beat without warning.',
+    stack: ['JavaScript', 'Web Audio API'],
+    status: 'Live',
+    color: '#34d399',
+    url: 'https://michaelpyon.github.io/lockstep/',
   },
 ]
 
@@ -261,6 +297,21 @@ export default function App() {
           </div>
 
         </div>
+
+        {/* Strategy & Simulations */}
+        <section className="mt-14">
+          <h2
+            className="font-display text-2xl text-text mb-6 animate-fade-in"
+            style={{ animationDelay: '650ms' }}
+          >
+            Strategy Simulations
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
+            {strategySims.map((project, i) => (
+              <Card key={project.name} project={project} index={i} />
+            ))}
+          </div>
+        </section>
 
         {/* Multiplayer Games */}
         <section className="mt-14">

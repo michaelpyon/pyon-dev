@@ -15,12 +15,6 @@
   --color-text-subtle: #525252;
   --color-border: #1e1e1e;
   --color-border-hover: #333333;
-
-  --color-subway: #EE352E;
-  --color-shooter: #22c55e;
-  --color-vintage: #8B5CF6;
-  --color-massage: #F59E0B;
-  --color-pin: #3B82F6;
 }
 
 html {
@@ -29,6 +23,7 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -81,7 +76,7 @@ body {
   border-radius: 1px;
   background: var(--stripe-color);
   opacity: 0.5;
-  transition: opacity 0.3s ease, height 0.3s ease;
+  transition: opacity 0.3s ease, top 0.3s ease, bottom 0.3s ease;
 }
 .card-stripe:hover::before {
   opacity: 1;
@@ -89,35 +84,35 @@ body {
   bottom: 8px;
 }
 
-/* Playground card hover glow */
-.playground-card {
-  position: relative;
+/* Subtle card hover lift */
+.card-stripe {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease;
 }
-.playground-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    var(--card-color, #ffffff)06,
-    transparent 40%
-  );
-  pointer-events: none;
-}
-.playground-card:hover::after {
-  opacity: 1;
+.card-stripe:hover {
+  transform: translateY(-1px);
 }
 
-/* Live indicator pulse */
-.playground-pulse {
-  animation: pulse-dot 2s ease-in-out infinite;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e1e1e;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+/* Focus states */
+a:focus-visible {
+  outline: 2px solid #525252;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Selection color */
