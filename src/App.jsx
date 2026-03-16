@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 const projects = [
   {
@@ -327,6 +328,25 @@ export default function App() {
             ))}
           </div>
         </section>
+        {/* Health Dashboard CTA */}
+        <div className="mt-16 mb-4">
+          <Link
+            to="/health"
+            className="group inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-border bg-surface hover:bg-surface-hover hover:border-border-hover transition-all duration-300"
+          >
+            <div>
+              <span className="text-sm font-medium text-text group-hover:text-white transition-colors">
+                Health Dashboard
+              </span>
+              <span className="text-xs text-text-subtle ml-2">
+                Sleep, activity &amp; blood work
+              </span>
+            </div>
+            <span className="text-text-subtle group-hover:text-text group-hover:translate-x-1 transition-all duration-300 ml-2">
+              →
+            </span>
+          </Link>
+        </div>
       </main>
 
       {/* About */}
