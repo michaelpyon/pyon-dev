@@ -1,36 +1,28 @@
-import { useEffect, useRef } from 'react'
+import { motion } from 'motion/react'
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+}
 
 export default function Card({ project, index }) {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('animate-fade-up')
-          el.style.animationDelay = `${400 + index * 100}ms`
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [index])
+  const hasUrl = Boolean(project.url)
 
   return (
-    <a
-      ref={ref}
+    <motion.a
       href={project.url || undefined}
-      target={project.url ? '_blank' : undefined}
-      rel={project.url ? 'noopener noreferrer' : undefined}
-      className={`card-stripe block rounded-lg border border-border bg-surface transition-all duration-300 group overflow-hidden ${project.url ? 'hover:bg-surface-hover hover:border-border-hover cursor-pointer' : 'cursor-default opacity-60'}`}
-      style={{
-        opacity: 0,
-        '--stripe-color': project.color,
-      }}
+      target={hasUrl ? '_blank' : undefined}
+      rel={hasUrl ? 'noopener noreferrer' : undefined}
+      data-cursor-card={hasUrl ? true : undefined}
+      variants={cardVariants}
+      whileHover={hasUrl ? { scale: 1.01 } : undefined}
+      whileTap={hasUrl ? { scale: 0.99 } : undefined}
+      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+      className={`block rounded-2xl border border-border bg-surface overflow-hidden ${
+        hasUrl
+          ? 'hover:bg-surface-hover hover:border-border-hover cursor-none'
+          : 'cursor-default opacity-60'
+      }`}
     >
       {project.image && (
         <div className="w-full overflow-hidden">
@@ -46,7 +38,10 @@ export default function Card({ project, index }) {
       <div className="pl-5 pr-6 py-5">
         <div className="flex items-baseline justify-between mb-2">
           <div className="flex items-baseline gap-3">
-            <span className="text-text-subtle text-xs font-mono tabular-nums" style={{ fontFamily: 'var(--font-mono)' }}>
+            <span
+              className="text-text-subtle text-xs font-mono tabular-nums"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
               {String(index + 1).padStart(2, '0')}
             </span>
             <h2
@@ -56,14 +51,24 @@ export default function Card({ project, index }) {
               {project.name}
             </h2>
           </div>
-          <span
-            className="text-[10px] font-medium tracking-wide uppercase shrink-0 ml-3"
-            style={{
-              color: project.status === 'Live' ? '#22c55e' : '#525252',
-            }}
-          >
-            {project.status}
-          </span>
+          <div className="flex items-center gap-2 shrink-0 ml-3">
+            {project.players && (
+              <span
+                className="text-[10px] font-medium tracking-wide px-1.5 py-0.5 rounded border border-border text-text-muted"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
+                {project.players}
+              </span>
+            )}
+            <span
+              className="text-[10px] font-medium tracking-wide uppercase"
+              style={{
+                color: project.status === 'Live' ? '#22c55e' : '#999999',
+              }}
+            >
+              {project.status}
+            </span>
+          </div>
         </div>
 
         <p className="text-text-muted text-sm leading-relaxed mb-4 ml-7">
@@ -81,6 +86,6 @@ export default function Card({ project, index }) {
           ))}
         </div>
       </div>
-    </a>
+    </motion.a>
   )
 }

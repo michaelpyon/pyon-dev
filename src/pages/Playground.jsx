@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'motion/react'
 
 const categories = [
   {
@@ -110,47 +110,43 @@ const categories = [
   },
 ]
 
-function PlaygroundCard({ item, index }) {
-  const ref = useRef(null)
+const cardVariants = {
+  hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+}
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('animate-fade-up')
-          el.style.animationDelay = `${200 + index * 80}ms`
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [index])
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+}
 
+function PlaygroundCard({ item }) {
   const isLive = item.status === 'live'
 
   return (
-    <a
-      ref={ref}
+    <motion.a
       href={isLive ? item.url : undefined}
       target={isLive ? '_blank' : undefined}
       rel={isLive ? 'noopener noreferrer' : undefined}
-      className={`playground-card relative block rounded-lg border transition-all duration-300 group overflow-hidden ${
+      data-cursor-card={isLive ? true : undefined}
+      variants={cardVariants}
+      whileHover={isLive ? { scale: 1.01 } : undefined}
+      whileTap={isLive ? { scale: 0.99 } : undefined}
+      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+      className={`relative block rounded-2xl border overflow-hidden ${
         isLive
-          ? 'border-border bg-surface hover:bg-surface-hover hover:border-border-hover cursor-pointer'
-          : 'border-border/50 bg-surface/50 cursor-default'
+          ? 'border-border bg-surface hover:bg-surface-hover hover:border-border-hover cursor-none'
+          : 'border-border bg-surface opacity-50 cursor-default'
       }`}
-      style={{
-        opacity: 0,
-        '--card-color': item.color,
-      }}
+      style={{ '--card-color': item.color }}
     >
       {/* Color accent bar at top */}
       <div
-        className="h-[2px] w-full transition-all duration-300"
+        className="h-[2px] w-full"
         style={{
           background: `linear-gradient(90deg, ${item.color}40, ${item.color}, ${item.color}40)`,
           opacity: isLive ? 0.6 : 0.2,
@@ -161,7 +157,7 @@ function PlaygroundCard({ item, index }) {
         {/* Header row */}
         <div className="flex items-start justify-between mb-3">
           <h3
-            className="text-sm font-semibold tracking-tight sm:text-base transition-colors duration-300"
+            className="text-sm font-semibold tracking-tight sm:text-base"
             style={{ color: isLive ? item.color : `${item.color}80` }}
           >
             {item.name}
@@ -169,19 +165,28 @@ function PlaygroundCard({ item, index }) {
 
           <div className="flex items-center gap-2 shrink-0 ml-3">
             {item.desktopOnly && isLive && (
-              <span className="text-[9px] text-text-subtle tracking-wide px-1.5 py-0.5 rounded border border-border bg-bg" style={{ fontFamily: 'var(--font-mono)' }}>
+              <span
+                className="text-[9px] text-text-subtle tracking-wide px-1.5 py-0.5 rounded border border-border bg-bg"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
                 {item.desktopNote || 'Desktop'}
               </span>
             )}
             {isLive ? (
               <span className="flex items-center gap-1">
-                <span className="playground-pulse inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
-                <span className="text-[10px] text-green-500 font-medium tracking-wide uppercase" style={{ fontFamily: 'var(--font-mono)' }}>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
+                <span
+                  className="text-[10px] text-green-500 font-medium tracking-wide uppercase"
+                  style={{ fontFamily: 'var(--font-mono)' }}
+                >
                   Play
                 </span>
               </span>
             ) : (
-              <span className="text-[10px] text-text-subtle/60 font-medium tracking-wide uppercase" style={{ fontFamily: 'var(--font-mono)' }}>
+              <span
+                className="text-[10px] text-text-subtle font-medium tracking-wide uppercase"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
                 Soon
               </span>
             )}
@@ -189,7 +194,7 @@ function PlaygroundCard({ item, index }) {
         </div>
 
         {/* Description */}
-        <p className={`text-xs leading-relaxed mb-3 ${isLive ? 'text-text-muted' : 'text-text-subtle/60'}`}>
+        <p className={`text-xs leading-relaxed mb-3 ${isLive ? 'text-text-muted' : 'text-text-subtle'}`}>
           {item.tagline}
         </p>
 
@@ -201,7 +206,7 @@ function PlaygroundCard({ item, index }) {
               className={`text-[9px] tracking-wide px-1.5 py-0.5 rounded border ${
                 isLive
                   ? 'text-text-subtle border-border'
-                  : 'text-text-subtle/40 border-border/40'
+                  : 'text-text-subtle border-border'
               }`}
               style={{ fontFamily: 'var(--font-mono)' }}
             >
@@ -210,76 +215,92 @@ function PlaygroundCard({ item, index }) {
           ))}
         </div>
       </div>
-
-      {/* Hover arrow for live cards */}
-      {isLive && (
-        <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-4px] group-hover:translate-x-0">
-          <span className="text-text-subtle text-xs">↗</span>
-        </div>
-      )}
-    </a>
+    </motion.a>
   )
 }
 
-export default function Playground() {
-  let globalIndex = 0
+const headingVariants = {
+  hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+}
 
+export default function Playground() {
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       {/* Header */}
       <header className="px-6 pt-12 pb-12 max-w-5xl mx-auto sm:pt-16 sm:pb-16">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-text-subtle text-xs tracking-wide hover:text-text transition-colors mb-8 group"
+          className="inline-flex items-center gap-2 text-text-subtle text-xs tracking-wide hover:text-text hover:font-semibold transition-all duration-200 mb-8 group cursor-none"
           style={{ fontFamily: 'var(--font-mono)' }}
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-200">←</span>
           pyon.dev
         </Link>
 
-        <div className="animate-fade-up" style={{ animationDelay: '100ms' }}>
-          <h1 className="font-display text-4xl sm:text-5xl text-text tracking-tight leading-[0.95] mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        >
+          <h1
+            className="font-display text-4xl sm:text-5xl text-text tracking-tight leading-[0.92] mb-4"
+            style={{ letterSpacing: '-1.5px' }}
+          >
             Playground
           </h1>
           <p className="text-text-muted text-sm leading-relaxed max-w-md">
             Browser games, instruments, and interactive experiments.
             Everything runs client-side. No accounts, no installs.
           </p>
-        </div>
+        </motion.div>
       </header>
 
       {/* Categories */}
       <main className="px-6 max-w-5xl mx-auto pb-20">
-        <div className="space-y-14">
+        <div className="space-y-[120px]">
           {categories.map((category) => (
             <section key={category.label}>
-              <div
-                className="flex items-center gap-3 mb-5 animate-fade-in"
-                style={{ animationDelay: '300ms' }}
+              <motion.div
+                variants={headingVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                className="flex items-center gap-3 mb-5"
               >
                 <span className="text-base">{category.icon}</span>
                 <div>
-                  <h2 className="text-text-subtle text-xs font-mono tracking-widest uppercase" style={{ fontFamily: 'var(--font-mono)' }}>
+                  <h2
+                    className="text-text-subtle text-xs font-mono tracking-widest uppercase"
+                    style={{ fontFamily: 'var(--font-mono)' }}
+                  >
                     {category.label}
                   </h2>
-                  <p className="text-text-subtle/60 text-[11px] mt-0.5">
+                  <p className="text-text-subtle text-[11px] mt-0.5 opacity-60">
                     {category.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {category.items.map((item) => {
-                  const idx = globalIndex++
-                  return (
-                    <PlaygroundCard key={item.name} item={item} index={idx} />
-                  )
-                })}
-              </div>
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+              >
+                {category.items.map((item) => (
+                  <PlaygroundCard key={item.name} item={item} />
+                ))}
+              </motion.div>
             </section>
           ))}
         </div>
       </main>
-    </>
+    </motion.div>
   )
 }
