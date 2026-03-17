@@ -31,20 +31,13 @@ const projects = [
     image: '/cards/random-pin.png',
   },
   {
-    name: 'CrateDigger',
-    tagline: 'Drop a pin on a record store anywhere in the world. Discover local genres, find nearby vinyl shops, and surface staff picks.',
-    stack: ['React', 'Discogs API', 'Leaflet'],
-    status: 'Coming soon',
-    color: '#22d3ee',
-    url: null,
-  },
-  {
     name: 'VintageMap',
     tagline: 'Enter a meaningful year and find the best wines from that vintage. Quality scores, tasting notes, and recommendations across 20 wine regions.',
     stack: ['React', 'Leaflet', 'TypeScript'],
-    status: 'Coming soon',
+    status: 'Live',
     color: '#fbbf24',
-    url: null,
+    url: 'https://vintage.michaelpyon.com',
+    image: '/cards/vintagemap.png',
   },
 ]
 
