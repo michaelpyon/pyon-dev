@@ -136,7 +136,7 @@ const multiplayerGames = [
   },
   {
     name: 'High Roller',
-    tagline: 'Dice roller with streak multipliers, celebration effects, and snake eyes mode. Quick dopamine loops.',
+    tagline: '6 dice games in one app — Free Roll, Race to Target, Pig, Sevens Out, Chicago, and Mexico. Realistic staggered dice physics, streak tracking, and celebration effects.',
     stack: ['React', 'Tailwind CSS', 'Vite'],
     status: 'Live',
     color: '#f59e0b',
