@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
+import { useEffect } from 'react'
 
 const categories = [
   {
@@ -111,8 +112,18 @@ const categories = [
 ]
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+  hidden: { opacity: 0, y: 12, filter: 'blur(4px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+}
+
+const reducedCardVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
 }
 
 const containerVariants = {
@@ -124,7 +135,7 @@ const containerVariants = {
   },
 }
 
-function PlaygroundCard({ item }) {
+function PlaygroundCard({ item, prefersReducedMotion }) {
   const isLive = item.status === 'live'
 
   return (
@@ -133,13 +144,18 @@ function PlaygroundCard({ item }) {
       target={isLive ? '_blank' : undefined}
       rel={isLive ? 'noopener noreferrer' : undefined}
       data-cursor-card={isLive ? true : undefined}
-      variants={cardVariants}
-      whileHover={isLive ? { scale: 1.01 } : undefined}
-      whileTap={isLive ? { scale: 0.99 } : undefined}
+      aria-label={`${item.name} — ${isLive ? 'Live' : 'Coming soon'}`}
+      variants={prefersReducedMotion ? reducedCardVariants : cardVariants}
+      whileHover={
+        isLive && !prefersReducedMotion
+          ? { scale: 1.015, boxShadow: '0 8px 30px rgba(0,0,0,0.06)' }
+          : undefined
+      }
+      whileTap={isLive && !prefersReducedMotion ? { scale: 0.96 } : undefined}
       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      className={`relative block rounded-2xl border overflow-hidden ${
+      className={`relative block rounded-2xl border overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#78736A] focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
         isLive
-          ? 'border-border bg-surface hover:bg-surface-hover hover:border-border-hover cursor-none'
+          ? 'border-border bg-surface hover:bg-surface-hover hover:border-border-hover'
           : 'border-border bg-surface opacity-50 cursor-default'
       }`}
       style={{ '--card-color': item.color }}
@@ -174,10 +190,10 @@ function PlaygroundCard({ item }) {
             )}
             {isLive ? (
               <span className="flex items-center gap-1">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500" />
+                <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#6B8F71' }} />
                 <span
-                  className="text-[10px] text-green-500 font-medium tracking-wide uppercase"
-                  style={{ fontFamily: 'var(--font-mono)' }}
+                  className="text-[10px] font-medium tracking-wide uppercase"
+                  style={{ fontFamily: 'var(--font-mono)', color: '#6B8F71' }}
                 >
                   Play
                 </span>
@@ -203,11 +219,7 @@ function PlaygroundCard({ item }) {
           {item.stack.map((tech) => (
             <span
               key={tech}
-              className={`text-[9px] tracking-wide px-1.5 py-0.5 rounded border ${
-                isLive
-                  ? 'text-text-subtle border-border'
-                  : 'text-text-subtle border-border'
-              }`}
+              className="text-[9px] text-text-subtle tracking-wide px-1.5 py-0.5 rounded border border-border"
               style={{ fontFamily: 'var(--font-mono)' }}
             >
               {tech}
@@ -220,22 +232,44 @@ function PlaygroundCard({ item }) {
 }
 
 const headingVariants = {
-  hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+  hidden: { opacity: 0, y: 12, filter: 'blur(4px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+}
+
+const reducedHeadingVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
 }
 
 export default function Playground() {
+  const prefersReducedMotion = useReducedMotion()
+
+  // Update document title for this page
+  useEffect(() => {
+    document.title = 'Playground — Browser Games & Experiments | Michael Pyon'
+    const metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) {
+      metaDesc.setAttribute('content', 'Browser games, instruments, and interactive experiments by Michael Pyon. Everything runs client-side.')
+    }
+    return () => {
+      document.title = 'Michael Pyon — Strategy & Product'
+      if (metaDesc) {
+        metaDesc.setAttribute('content', 'Michael Pyon builds software and strategy. Portfolio of side projects spanning NYC transit, wine, gaming intelligence, and more.')
+      }
+    }
+  }, [])
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: prefersReducedMotion ? 0 : 1 }}
     >
       {/* Header */}
       <header className="px-6 pt-12 pb-12 max-w-5xl mx-auto sm:pt-16 sm:pb-16">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-text-subtle text-xs tracking-wide hover:text-text hover:font-semibold transition-all duration-200 mb-8 group cursor-none"
+          className="inline-flex items-center gap-2 text-text-subtle text-xs tracking-wide hover:text-text transition-colors duration-200 mb-8 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#78736A] focus-visible:ring-offset-2 focus-visible:ring-offset-bg focus-visible:rounded"
           style={{ fontFamily: 'var(--font-mono)' }}
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-200">←</span>
@@ -243,9 +277,9 @@ export default function Playground() {
         </Link>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+          animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          transition={{ duration: prefersReducedMotion ? 0.3 : 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         >
           <h1
             className="font-display text-4xl sm:text-5xl text-text tracking-tight leading-[0.92] mb-4"
@@ -261,12 +295,12 @@ export default function Playground() {
       </header>
 
       {/* Categories */}
-      <main className="px-6 max-w-5xl mx-auto pb-20">
+      <main id="main-content" className="px-6 max-w-5xl mx-auto pb-20">
         <div className="space-y-[120px]">
           {categories.map((category) => (
-            <section key={category.label}>
+            <section key={category.label} role="region" aria-label={category.label}>
               <motion.div
-                variants={headingVariants}
+                variants={prefersReducedMotion ? reducedHeadingVariants : headingVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
@@ -275,7 +309,7 @@ export default function Playground() {
                 <span className="text-base">{category.icon}</span>
                 <div>
                   <h2
-                    className="text-text-subtle text-xs font-mono tracking-widest uppercase"
+                    className="text-text-subtle text-xs tracking-widest uppercase"
                     style={{ fontFamily: 'var(--font-mono)' }}
                   >
                     {category.label}
@@ -294,7 +328,7 @@ export default function Playground() {
                 viewport={{ once: true, margin: '-50px' }}
               >
                 {category.items.map((item) => (
-                  <PlaygroundCard key={item.name} item={item} />
+                  <PlaygroundCard key={item.name} item={item} prefersReducedMotion={prefersReducedMotion} />
                 ))}
               </motion.div>
             </section>

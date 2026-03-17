@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; font-family: 'General Sans', system-ui, sans-serif; }
+
+  .card {
+    width: 1200px; height: 630px;
+    background: linear-gradient(135deg, #E8E5DD 0%, #E5E1D8 50%, #E0DBCF 100%);
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+
+  .deco1 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: #f43f5e; opacity: 0.04; top: -120px; right: -60px; }
+  .deco2 { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: #38bdf8; opacity: 0.04; bottom: -80px; left: 50px; }
+
+  .browser {
+    width: 900px; height: 500px; border-radius: 12px; overflow: hidden;
+    background: #c0c0c0;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.12), 0 4px 20px rgba(0,0,0,0.06);
+    position: relative; z-index: 1;
+  }
+
+  /* IE-style toolbar */
+  .toolbar {
+    height: 36px; background: #ece9d8; display: flex; align-items: center; padding: 0 14px; gap: 6px;
+    border-bottom: 2px solid #d4d0c8;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; opacity: 0.7; }
+  .dot.y { background: #febc2e; opacity: 0.7; }
+  .dot.g { background: #28c840; opacity: 0.7; }
+  .url {
+    margin-left: 20px; background: white; padding: 3px 14px; border-radius: 0; border: 1px solid #a0a0a0;
+    font-size: 11px; font-family: 'JetBrains Mono', monospace; color: rgba(0,0,0,0.4);
+  }
+
+  .content { padding: 0; height: 464px; background: #008080; position: relative; overflow: hidden; }
+
+  /* Scattered popup windows */
+  .popup {
+    position: absolute; background: #ece9d8; border: 2px outset #ffffff;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  }
+  .popup-title {
+    height: 22px; background: linear-gradient(180deg, #0a246a, #3a6ea5);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 4px;
+    font-size: 10px; color: white; font-weight: 600;
+  }
+  .popup-close { width: 16px; height: 14px; background: #c0c0c0; border: 1px outset #ffffff; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #333; font-weight: bold; }
+  .popup-body { padding: 12px; font-size: 11px; color: #333; }
+
+  .popup.p1 { width: 260px; top: 40px; left: 40px; }
+  .popup.p2 { width: 220px; top: 80px; left: 200px; }
+  .popup.p3 { width: 240px; top: 30px; right: 80px; }
+  .popup.p4 { width: 200px; bottom: 80px; left: 60px; }
+  .popup.p5 { width: 250px; bottom: 40px; right: 100px; }
+
+  .score-display {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; z-index: 10;
+  }
+  .score-label { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.15em; }
+  .score-value { font-size: 72px; font-weight: 700; color: white; font-family: 'JetBrains Mono', monospace; text-shadow: 0 4px 20px rgba(0,0,0,0.3); line-height: 1; }
+  .score-combo { font-size: 14px; color: #fbbf24; font-weight: 600; margin-top: 4px; }
+
+  .beat-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+    background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .beat-pip { width: 24px; height: 8px; border-radius: 2px; }
+  .beat-pip.hit { background: #4ade80; }
+  .beat-pip.miss { background: #f87171; }
+  .beat-pip.pending { background: rgba(255,255,255,0.15); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="deco1"></div>
+  <div class="deco2"></div>
+  <div class="browser">
+    <div class="toolbar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <div class="url">popup-beat-panic</div>
+    </div>
+    <div class="content">
+      <div class="popup p1">
+        <div class="popup-title"><span>Warning!</span><div class="popup-close">X</div></div>
+        <div class="popup-body">Your computer may be at risk! Click here to close this popup on the beat.</div>
+      </div>
+      <div class="popup p2">
+        <div class="popup-title"><span>Alert</span><div class="popup-close">X</div></div>
+        <div class="popup-body">You've WON a prize! Close in rhythm to score points.</div>
+      </div>
+      <div class="popup p3">
+        <div class="popup-title"><span>Internet Explorer</span><div class="popup-close">X</div></div>
+        <div class="popup-body">A rhythm game disguised as an IE nightmare.</div>
+      </div>
+      <div class="popup p4">
+        <div class="popup-title"><span>System Alert</span><div class="popup-close">X</div></div>
+        <div class="popup-body">Keep the beat. Don't miss.</div>
+      </div>
+      <div class="popup p5">
+        <div class="popup-title"><span>Congratulations!</span><div class="popup-close">X</div></div>
+        <div class="popup-body">Close popups to the rhythm for maximum score.</div>
+      </div>
+
+      <div class="score-display">
+        <div class="score-label">Score</div>
+        <div class="score-value">8,420</div>
+        <div class="score-combo">12x Combo</div>
+      </div>
+
+      <div class="beat-bar">
+        <div class="beat-pip hit"></div>
+        <div class="beat-pip hit"></div>
+        <div class="beat-pip hit"></div>
+        <div class="beat-pip miss"></div>
+        <div class="beat-pip hit"></div>
+        <div class="beat-pip hit"></div>
+        <div class="beat-pip pending"></div>
+        <div class="beat-pip pending"></div>
+        <div class="beat-pip pending"></div>
+        <div class="beat-pip pending"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

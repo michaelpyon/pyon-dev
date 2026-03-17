@@ -1,17 +1,26 @@
 import { useState, useEffect } from 'react'
-import { motion, useMotionValue, useSpring } from 'motion/react'
+import { motion, useMotionValue, useSpring, useReducedMotion } from 'motion/react'
+
+// Only mount on devices with a fine pointer (mouse/trackpad)
+const canHover =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
 export default function CustomCursor() {
+  const prefersReducedMotion = useReducedMotion()
   const [hovered, setHovered] = useState(false)
   const [visible, setVisible] = useState(false)
   const cursorX = useMotionValue(0)
   const cursorY = useMotionValue(0)
-  const springX = useSpring(cursorX, { damping: 28, stiffness: 350 })
-  const springY = useSpring(cursorY, { damping: 28, stiffness: 350 })
+
+  const springConfig = prefersReducedMotion
+    ? { damping: 100, stiffness: 1000 }
+    : { damping: 28, stiffness: 350 }
+  const springX = useSpring(cursorX, springConfig)
+  const springY = useSpring(cursorY, springConfig)
 
   useEffect(() => {
-    // Skip on touch devices
-    if (window.matchMedia('(hover: none)').matches) return
+    if (!canHover) return
 
     const move = (e) => {
       cursorX.set(e.clientX)
@@ -24,31 +33,26 @@ export default function CustomCursor() {
 
     window.addEventListener('mousemove', move)
 
-    // Attach hover listeners to all cursor-card elements
-    const attachListeners = () => {
-      document.querySelectorAll('[data-cursor-card]').forEach((el) => {
-        el.addEventListener('mouseenter', enter)
-        el.addEventListener('mouseleave', leave)
-      })
+    // Use event delegation instead of per-element listeners
+    const handleOver = (e) => {
+      if (e.target.closest('[data-cursor-card]')) enter()
+    }
+    const handleOut = (e) => {
+      if (e.target.closest('[data-cursor-card]') && !e.relatedTarget?.closest('[data-cursor-card]')) leave()
     }
 
-    attachListeners()
-
-    // Re-attach on DOM changes (for dynamically rendered cards)
-    const observer = new MutationObserver(attachListeners)
-    observer.observe(document.body, { childList: true, subtree: true })
+    document.addEventListener('mouseover', handleOver)
+    document.addEventListener('mouseout', handleOut)
 
     return () => {
       window.removeEventListener('mousemove', move)
-      observer.disconnect()
-      document.querySelectorAll('[data-cursor-card]').forEach((el) => {
-        el.removeEventListener('mouseenter', enter)
-        el.removeEventListener('mouseleave', leave)
-      })
+      document.removeEventListener('mouseover', handleOver)
+      document.removeEventListener('mouseout', handleOut)
     }
   }, [cursorX, cursorY])
 
-  if (!visible) return null
+  // Don't render on touch devices or when mouse hasn't moved yet
+  if (!canHover || !visible) return null
 
   return (
     <motion.div
@@ -60,11 +64,15 @@ export default function CustomCursor() {
         translateY: '-50%',
       }}
       animate={{
-        width: hovered ? 64 : 20,
-        height: hovered ? 64 : 20,
+        width: hovered ? 64 : 8,
+        height: hovered ? 64 : 8,
         opacity: 1,
       }}
-      transition={{ type: 'spring', damping: 28, stiffness: 350 }}
+      transition={
+        prefersReducedMotion
+          ? { duration: 0 }
+          : { type: 'spring', damping: 28, stiffness: 350 }
+      }
     >
       {hovered && (
         <motion.span

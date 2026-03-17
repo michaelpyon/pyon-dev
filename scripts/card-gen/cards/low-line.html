@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Bebas+Neue&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; font-family: 'General Sans', system-ui, sans-serif; }
+
+  .card {
+    width: 1200px; height: 630px;
+    background: linear-gradient(135deg, #E8E5DD 0%, #E4DFD5 50%, #DDD7CC 100%);
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+
+  .deco1 { position: absolute; width: 350px; height: 350px; border-radius: 50%; background: #fb923c; opacity: 0.05; top: -80px; left: -60px; }
+  .deco2 { position: absolute; width: 280px; height: 280px; border-radius: 50%; background: #E8353A; opacity: 0.04; bottom: -80px; right: -40px; }
+
+  .browser {
+    width: 900px; height: 500px; border-radius: 12px; overflow: hidden;
+    background: #0A0A0A;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.12), 0 4px 20px rgba(0,0,0,0.06);
+    position: relative; z-index: 1;
+  }
+
+  .toolbar {
+    height: 36px; background: #050505; display: flex; align-items: center; padding: 0 14px; gap: 6px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; opacity: 0.7; }
+  .dot.y { background: #febc2e; opacity: 0.7; }
+  .dot.g { background: #28c840; opacity: 0.7; }
+  .url {
+    margin-left: 20px; background: rgba(255,255,255,0.06); padding: 3px 14px; border-radius: 5px;
+    font-size: 11px; font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.3);
+  }
+
+  .content { padding: 28px 32px; display: flex; gap: 40px; }
+
+  .left { flex: 1; }
+  .right { width: 340px; }
+
+  .label { font-size: 9px; font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px; }
+  .title { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: #E8353A; line-height: 0.95; letter-spacing: 1px; }
+  .title-sub { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: #ffffff; line-height: 0.95; letter-spacing: 1px; }
+  .tagline { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 12px; line-height: 1.5; }
+
+  .leaderboard { margin-top: 8px; }
+  .lb-title { font-size: 10px; font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; }
+  .lb-row {
+    display: flex; align-items: center; gap: 12px; padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .lb-rank {
+    width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+  }
+  .lb-rank.r1 { background: #E8353A; color: white; }
+  .lb-rank.r2 { background: rgba(232,53,58,0.6); color: white; }
+  .lb-rank.r3 { background: rgba(232,53,58,0.3); color: rgba(255,255,255,0.8); }
+  .lb-rank.r4 { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
+  .lb-name { font-size: 13px; color: #e0ddd5; font-weight: 500; flex: 1; }
+  .lb-score { font-size: 16px; font-family: 'JetBrains Mono', monospace; font-weight: 500; color: rgba(255,255,255,0.7); }
+  .lb-detail { font-size: 9px; color: rgba(255,255,255,0.2); font-family: 'JetBrains Mono', monospace; }
+
+  .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="deco1"></div>
+  <div class="deco2"></div>
+  <div class="browser">
+    <div class="toolbar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <div class="url">subway.michaelpyon.com</div>
+    </div>
+    <div class="content">
+      <div class="left">
+        <div class="label">NYC Transit &middot; Real-time <span class="live-dot"></span></div>
+        <div class="title">The</div>
+        <div class="title-sub">Low Line</div>
+        <div class="tagline">Which NYC subway line is ruining the most commutes right now?</div>
+      </div>
+      <div class="right">
+        <div class="leaderboard">
+          <div class="lb-title">Shame Leaderboard</div>
+          <div class="lb-row">
+            <div class="lb-rank r1">1</div>
+            <div class="lb-name">1/2/3 Lines</div>
+            <div><div class="lb-score">94</div><div class="lb-detail">14 active delays</div></div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank r2">2</div>
+            <div class="lb-name">B/D/F/M Lines</div>
+            <div><div class="lb-score">71</div><div class="lb-detail">8 active delays</div></div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank r3">3</div>
+            <div class="lb-name">A/C/E Lines</div>
+            <div><div class="lb-score">48</div><div class="lb-detail">5 active delays</div></div>
+          </div>
+          <div class="lb-row">
+            <div class="lb-rank r4">4</div>
+            <div class="lb-name">4/5/6 Lines</div>
+            <div><div class="lb-score">21</div><div class="lb-detail">2 active delays</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 :root {
   --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'General Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
@@ -11,10 +11,10 @@
   --color-surface: #E8E5DD;
   --color-surface-hover: #E0DDD5;
   --color-text: #1A1A1A;
-  --color-text-muted: #6B6B6B;
-  --color-text-subtle: #999999;
-  --color-border: rgba(0,0,0,0.06);
-  --color-border-hover: rgba(0,0,0,0.12);
+  --color-text-muted: #78736A;
+  --color-text-subtle: #A8A29E;
+  --color-border: rgba(120,100,80,0.08);
+  --color-border-hover: rgba(120,100,80,0.15);
 }
 
 html {
@@ -23,16 +23,17 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none;
 }
 
 body {
   margin: 0;
 }
 
-/* Hide default cursor on interactive elements */
-a, button, [data-cursor-card] {
-  cursor: none;
+/* Custom cursor only on devices with fine pointer */
+@media (hover: hover) and (pointer: fine) {
+  [data-cursor-card] {
+    cursor: none;
+  }
 }
 
 /* Editorial serif for display headings */
@@ -40,31 +41,14 @@ a, button, [data-cursor-card] {
   font-family: var(--font-display);
 }
 
-/* Staggered entrance animations (fallback for non-motion) */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+/* Reduced motion: disable all animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fade-up {
-  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease forwards;
-  opacity: 0;
 }
 
 /* Custom scrollbar */
@@ -85,7 +69,7 @@ a, button, [data-cursor-card] {
 
 /* Focus states */
 a:focus-visible {
-  outline: 2px solid #999999;
+  outline: 2px solid #A8A29E;
   outline-offset: 2px;
   border-radius: 4px;
 }
