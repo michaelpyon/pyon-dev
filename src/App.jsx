@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import Playground from './pages/Playground'
 import CustomCursor from './components/CustomCursor'
 
 const NotFound = lazy(() => import('./pages/NotFound'))
@@ -21,7 +20,6 @@ export default function App() {
       <div className="min-h-screen bg-bg">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/playground" element={<Playground />} />
           <Route
             path="*"
             element={

@@ -271,27 +271,6 @@ export default function Home() {
             ))}
           </motion.div>
         </section>
-
-        {/* Playground CTA */}
-        <div className="mt-[120px] mb-4">
-          <Link
-            to="/playground"
-            className="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-border bg-surface hover:bg-surface-hover hover:border-border-hover transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#78736A] focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-          >
-            <span className="text-lg">🧪</span>
-            <div>
-              <span className="text-sm font-semibold text-text transition-colors">
-                Playground
-              </span>
-              <span className="text-xs text-text-subtle ml-2">
-                Browser games &amp; experiments
-              </span>
-            </div>
-            <span className="text-text-subtle group-hover:text-text group-hover:translate-x-1 transition-all duration-300 ml-2">
-              →
-            </span>
-          </Link>
-        </div>
       </main>
 
       {/* About */}
