@@ -297,12 +297,6 @@ export default function Home() {
       {/* About */}
       <section className="px-6 max-w-5xl mx-auto mt-[120px] mb-20" role="region" aria-label="About">
         <SectionLabel prefersReducedMotion={prefersReducedMotion}>About</SectionLabel>
-        <div className="max-w-lg">
-          <p className="text-text-muted text-base leading-relaxed">
-            I work in strategy and product in the gaming industry. On the side I build tools and experiments, mostly in the browser. I like maps, data, music, and making things that feel good to use. Based in Brooklyn.
-          </p>
-        </div>
-
         {/* Contact links */}
         <div className="flex gap-6 mt-8">
           <a
