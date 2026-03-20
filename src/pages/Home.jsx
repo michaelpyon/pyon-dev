@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
@@ -223,6 +224,39 @@ function GameCard({ game, index, prefersReducedMotion }) {
   )
 }
 
+function ThemeToggle() {
+  const [night, setNight] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.getAttribute('data-theme') === 'night'
+    }
+    return false
+  })
+
+  useEffect(() => {
+    if (night) {
+      document.documentElement.setAttribute('data-theme', 'night')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+    }
+  }, [night])
+
+  return (
+    <button
+      onClick={() => setNight(n => !n)}
+      aria-label={night ? 'Switch to day mode' : 'Switch to night mode'}
+      className="fixed top-6 right-6 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-surface hover:bg-surface-hover transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-subtle"
+      style={{ boxShadow: '0 0 0 1px var(--color-border)' }}
+    >
+      <span
+        className="text-text-muted text-sm transition-transform duration-300"
+        style={{ transform: night ? 'rotate(180deg)' : 'rotate(0deg)' }}
+      >
+        {night ? '☀' : '☽'}
+      </span>
+    </button>
+  )
+}
+
 export default function Home() {
   const prefersReducedMotion = useReducedMotion()
 
@@ -232,6 +266,8 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: prefersReducedMotion ? 0 : 0.8 }}
     >
+      <ThemeToggle />
+
       {/* Hero: Big name */}
       <header className="px-6 pt-20 pb-28 max-w-screen-2xl mx-auto sm:pt-28 sm:pb-36">
         <motion.h1
