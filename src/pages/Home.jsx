@@ -35,6 +35,12 @@ const projects = [
     image: '/cards/concert-prep.png',
   },
   {
+    name: 'Market Pulse',
+    tagline: 'Menswear intelligence dashboard.',
+    url: 'https://menswear.michaelpyon.com',
+    image: '/cards/menswear.png',
+  },
+  {
     name: 'Pollen Season',
     tagline: 'NYC pollen forecast for allergy sufferers.',
     url: 'https://pollen-season.vercel.app',
