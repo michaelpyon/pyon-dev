@@ -29,6 +29,12 @@ const projects = [
     image: '/cards/vintagemap.png',
   },
   {
+    name: 'Concert Prep',
+    tagline: 'Know every song before the show.',
+    url: 'https://concert.michaelpyon.com',
+    image: '/cards/concert-prep.png',
+  },
+  {
     name: 'Pollen Season',
     tagline: 'NYC pollen forecast for allergy sufferers.',
     url: 'https://pollen-season.vercel.app',
