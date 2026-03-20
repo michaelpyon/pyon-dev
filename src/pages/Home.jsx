@@ -1,174 +1,223 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import Card from '../components/Card'
 
+// PROJECTS: Main work with images where available
 const projects = [
   {
     name: 'ShooterDigest',
-    tagline: 'Weekly intelligence briefing for competitive FPS games. Steam concurrents, Reddit sentiment, and press coverage in one digest.',
-    stack: ['Python', 'Flask', 'Steam API', 'Reddit API'],
-    status: 'Live',
-    color: '#4ade80',
+    tagline: 'Weekly FPS intelligence briefing.',
     url: 'https://shooter.michaelpyon.com',
     image: '/cards/shooterdigest.png',
+    featured: true,
   },
   {
     name: 'The Low Line',
-    tagline: 'Real-time performance scores for every NYC subway line. F, M, and L ranked daily. History tracked over time.',
-    stack: ['React', 'MTA API', 'Node.js'],
-    status: 'Live',
-    color: '#fb923c',
+    tagline: 'Subway performance leaderboard.',
     url: 'https://subway.michaelpyon.com',
     image: '/cards/low-line.png',
   },
   {
     name: 'Random Pin Cuisine',
-    tagline: 'Drop a pin anywhere in the world and discover what people actually eat there. Powered by OpenStreetMap — no API key required.',
-    stack: ['React', 'Leaflet', 'Overpass API'],
-    status: 'Live',
-    color: '#f472b6',
+    tagline: 'Map-based food discovery.',
     url: 'https://random-pin.michaelpyon.com',
     image: '/cards/random-pin.png',
   },
   {
     name: 'VintageMap',
-    tagline: 'Enter a meaningful year and find the best wines from that vintage. Quality scores, tasting notes, and recommendations across 20 wine regions.',
-    stack: ['React', 'Leaflet', 'TypeScript'],
-    status: 'Live',
-    color: '#fbbf24',
+    tagline: 'Wine vintage search tool.',
     url: 'https://vintage.michaelpyon.com',
     image: '/cards/vintagemap.png',
   },
+  {
+    name: 'Pollen Season',
+    tagline: 'NYC pollen forecast for allergy sufferers.',
+    url: 'https://pollen-season.vercel.app',
+    image: '/cards/pollen-season.png',
+  },
 ]
 
-const musicProjects = [
+// EXPERIMENTS: Creative/technical explorations
+const experiments = [
   {
     name: 'Air Composer',
-    tagline: 'Play a theremin and talk box with your hands using just a webcam. No installs. Runs entirely in the browser.',
-    stack: ['TypeScript', 'MediaPipe', 'Web Audio API'],
-    status: 'Live',
-    color: '#a78bfa',
+    category: 'Theremin',
+    tagline: 'Play a theremin with your hands using just a webcam.',
     url: 'https://air-composer.michaelpyon.com',
     image: '/cards/air-composer.png',
   },
   {
     name: 'Popup Beat Panic',
-    tagline: 'A rhythm game disguised as an IE nightmare. Close the popups. Keep the beat. Don\'t miss.',
-    stack: ['JavaScript', 'Web Audio API', 'Canvas'],
-    status: 'Live',
-    color: '#f43f5e',
+    category: 'Rhythm',
+    tagline: 'A rhythm game disguised as an IE nightmare.',
     url: 'https://michaelpyon.github.io/popup-beat-panic/',
     image: '/cards/popup-beat-panic.png',
   },
   {
     name: 'Keyboard Drummer',
-    tagline: 'Turn your keyboard into a drum kit. Map keys to samples, build patterns, record your session.',
-    stack: ['JavaScript', 'Web Audio API'],
-    status: 'Live',
-    color: '#38bdf8',
+    category: 'Instrument',
+    tagline: 'Turn your keyboard into a drum kit.',
     url: 'https://michaelpyon.github.io/keyboard-drummer/',
     image: '/cards/keyboard-drummer.png',
   },
 ]
 
-const strategySims = [
-  {
-    name: 'Shock Cascade',
-    tagline: 'Explainable macro risk reasoning tool. Model geopolitical disruptions across causal dependencies, sector exposures, and portfolio overlays.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    status: 'Live',
-    color: '#38bdf8',
-    url: 'https://shock-cascade.vercel.app',
-  },
-  {
-    name: 'Studio Commander',
-    tagline: '12-turn live-ops strategy simulation. Run a fictional game studio — balance content, monetization, anti-cheat, QA, and community across competing priorities.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    status: 'Live',
-    color: '#c084fc',
-    url: 'https://studio-commander.vercel.app',
-  },
-]
-
-const multiplayerGames = [
-  {
-    name: 'Freeze Frame',
-    tagline: 'Museum heist party game. Sneak, sprint, or hide each round — but the group\'s greed shapes everyone\'s risk. Hidden security protocols change every game.',
-    stack: ['JavaScript', 'Web Audio API', 'CSS Animations'],
-    status: 'Live',
-    color: '#d4a843',
-    url: 'https://michaelpyon.github.io/Freeze-Frame-Claude/',
-    players: '2–6 players',
-  },
-  {
-    name: 'Bomb Council',
-    tagline: 'Pass-and-play party game. Vote to bomb a council member each round. Round events shake up the rules — immunity, double strikes, and more.',
-    stack: ['React', 'TypeScript', 'Framer Motion', 'Web Audio'],
-    status: 'Live',
-    color: '#ff6b35',
-    url: 'https://bomb-council.vercel.app',
-    players: '4–8 players',
-  },
-  {
-    name: 'Eminent Domain',
-    tagline: 'Grid combat with a gentrification twist. Displace, organize, or relocate on a shrinking 8×8 city map. Last faction standing wins.',
-    stack: ['Node.js', 'Socket.IO', 'Express'],
-    status: 'Live',
-    color: '#ef4444',
-    url: 'https://eminent-domain-production.up.railway.app',
-    players: '2–4 players',
-  },
-  {
-    name: 'Kinetic Grid',
-    tagline: 'Simultaneous-turn grid combat. Dash, brace, or sidestep on a collapsing arena. Pure strategy, no luck.',
-    stack: ['Node.js', 'Socket.IO', 'Express'],
-    status: 'Live',
-    color: '#8b5cf6',
-    url: 'https://kinetic-grid-production.up.railway.app',
-    players: '2–4 players',
-  },
+// GAMES: Multiplayer browser games
+const games = [
   {
     name: 'High Roller',
-    tagline: '6 dice games in one app — Free Roll, Race to Target, Pig, Sevens Out, Chicago, and Mexico. Realistic staggered dice physics, streak tracking, and celebration effects.',
-    stack: ['React', 'Tailwind CSS', 'Vite'],
-    status: 'Live',
-    color: '#f59e0b',
+    tagline: '6 dice games in one app.',
+    players: '1+',
+    tags: ['Dice', 'Utility'],
     url: 'https://high-roller-eight.vercel.app',
-    players: '1+ players',
   },
 ]
 
 const containerVariants = {
   hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 12 },
   visible: {
-    transition: {
-      staggerChildren: 0.08,
-    },
+    opacity: 1, y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
-const headingVariants = {
-  hidden: { opacity: 0, y: 12, filter: 'blur(4px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-}
-
-const reducedHeadingVariants = {
+const reducedItemVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.3 } },
 }
 
-function SectionLabel({ children, prefersReducedMotion }) {
+function SectionHeader({ label, index, prefersReducedMotion }) {
   return (
-    <motion.h2
-      variants={prefersReducedMotion ? reducedHeadingVariants : headingVariants}
+    <motion.div
+      variants={prefersReducedMotion ? reducedItemVariants : itemVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
-      className="text-xs tracking-widest uppercase text-text-subtle mb-6"
-      style={{ fontFamily: 'var(--font-mono)' }}
+      className="flex items-baseline justify-between mb-8 border-b border-border pb-2"
     >
-      {children}
-    </motion.h2>
+      <h2 className="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-text-subtle">
+        {label}
+      </h2>
+      <span className="font-label text-[10px] text-text-subtle/60">
+        {index}
+      </span>
+    </motion.div>
+  )
+}
+
+function ProjectCard({ project, span, prefersReducedMotion }) {
+  const variants = prefersReducedMotion ? reducedItemVariants : itemVariants
+
+  return (
+    <motion.a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cursor-card
+      variants={variants}
+      className={`group block ${span}`}
+      aria-label={`${project.name} — ${project.tagline}`}
+    >
+      {project.image && (
+        <div className="overflow-hidden bg-surface mb-4">
+          <img
+            src={project.image}
+            alt={`${project.name} preview`}
+            className="w-full h-auto img-grayscale"
+            loading="eager"
+          />
+        </div>
+      )}
+      {!project.image && (
+        <div className="aspect-[16/10] bg-surface mb-4 flex items-end p-6">
+          <span className="font-display italic text-4xl text-text-subtle/30">{project.name}</span>
+        </div>
+      )}
+      <div className="flex justify-between items-start">
+        <div>
+          <h3 className="font-display italic text-2xl leading-none mb-2">{project.name}</h3>
+          <p className="text-text-muted text-sm max-w-md">{project.tagline}</p>
+        </div>
+        <span className="text-text-subtle/40 group-hover:text-accent transition-colors text-sm mt-1">&#8599;</span>
+      </div>
+    </motion.a>
+  )
+}
+
+function ExperimentCard({ experiment, prefersReducedMotion }) {
+  const variants = prefersReducedMotion ? reducedItemVariants : itemVariants
+
+  return (
+    <motion.a
+      href={experiment.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cursor-card
+      variants={variants}
+      className="group block"
+      aria-label={`${experiment.name} — ${experiment.tagline}`}
+    >
+      <div className="overflow-hidden bg-surface border border-border mb-4">
+        {experiment.image ? (
+          <img
+            src={experiment.image}
+            alt={`${experiment.name} preview`}
+            className="w-full h-auto img-grayscale brightness-90"
+            loading="eager"
+          />
+        ) : (
+          <div className="aspect-[4/3] w-full flex items-center justify-center">
+            <span className="font-display italic text-2xl text-text-subtle/20">{experiment.name}</span>
+          </div>
+        )}
+      </div>
+      <div className="pb-1">
+        <h3 className="font-display italic text-xl mb-1">{experiment.name}</h3>
+        <p className="font-label text-[11px] uppercase tracking-wider text-text-muted">{experiment.category}</p>
+      </div>
+    </motion.a>
+  )
+}
+
+function GameCard({ game, index, prefersReducedMotion }) {
+  const variants = prefersReducedMotion ? reducedItemVariants : itemVariants
+
+  return (
+    <motion.a
+      href={game.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cursor-card
+      variants={variants}
+      className="group block py-8 border-b border-border"
+      aria-label={`${game.name} — ${game.tagline}`}
+    >
+      <div className="grid grid-cols-1 md:grid-cols-12 items-center">
+        <div className="md:col-span-1">
+          <span className="font-label text-xs text-text-subtle/40">03.{index + 1}</span>
+        </div>
+        <div className="md:col-span-4">
+          <h3 className="font-display italic text-3xl">{game.name}</h3>
+        </div>
+        <div className="md:col-span-4">
+          <p className="text-text-muted text-sm">{game.tagline} {game.players} players.</p>
+        </div>
+        <div className="md:col-span-3 flex justify-end gap-2">
+          {game.tags.map(tag => (
+            <span
+              key={tag}
+              className="px-2 py-1 bg-surface-hover font-label text-[9px] uppercase tracking-wider text-text-muted"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.a>
   )
 }
 
@@ -179,142 +228,133 @@ export default function Home() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: prefersReducedMotion ? 0 : 1 }}
+      transition={{ duration: prefersReducedMotion ? 0 : 0.8 }}
     >
-      {/* Hero */}
-      <header className="px-6 pt-16 pb-20 max-w-5xl mx-auto sm:pt-24 sm:pb-28">
+      {/* Hero: Big name */}
+      <header className="px-6 pt-20 pb-28 max-w-screen-2xl mx-auto sm:pt-28 sm:pb-36">
         <motion.h1
-          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
           transition={{ duration: prefersReducedMotion ? 0.3 : 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="font-display text-5xl sm:text-7xl text-text tracking-tight leading-[0.92] mb-4"
-          style={{ letterSpacing: '-2px' }}
+          className="font-display italic text-6xl sm:text-8xl lg:text-9xl text-text leading-[0.9] font-normal lowercase"
+          style={{ letterSpacing: '-0.03em' }}
         >
           michael pyon
         </motion.h1>
-        <motion.p
-          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
-          animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          transition={{ duration: prefersReducedMotion ? 0.3 : 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-          className="text-text-muted text-lg sm:text-xl tracking-tight"
-        >
-          Strategy &amp; product in gaming.
-        </motion.p>
       </header>
 
-      {/* Projects + Music */}
-      <main id="main-content" className="px-6 max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-x-12 gap-y-[120px]">
+      <main id="main-content" className="px-6 max-w-screen-2xl mx-auto">
 
-          {/* Projects column */}
-          <div>
-            <SectionLabel prefersReducedMotion={prefersReducedMotion}>Projects</SectionLabel>
-            <motion.div
-              className="grid gap-3"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              {projects.map((project, i) => (
-                <Card key={project.name} project={project} index={i} />
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Music column */}
-          <div>
-            <SectionLabel prefersReducedMotion={prefersReducedMotion}>Music</SectionLabel>
-            <motion.div
-              className="grid gap-3"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-            >
-              {musicProjects.map((project, i) => (
-                <Card key={project.name} project={project} index={i} />
-              ))}
-            </motion.div>
-          </div>
-
-        </div>
-
-        {/* Strategy Simulations */}
-        <section className="mt-[120px]" role="region" aria-label="Strategy Simulations">
-          <SectionLabel prefersReducedMotion={prefersReducedMotion}>Strategy Simulations</SectionLabel>
+        {/* PROJECTS */}
+        <section className="mb-24" role="region" aria-label="Projects">
+          <SectionHeader label="Projects" index="01 / Index" prefersReducedMotion={prefersReducedMotion} />
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl"
+            className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
           >
-            {strategySims.map((project, i) => (
-              <Card key={project.name} project={project} index={i} />
+            {/* Featured project: ShooterDigest gets 8 cols */}
+            <ProjectCard
+              project={projects[0]}
+              span="md:col-span-8"
+              prefersReducedMotion={prefersReducedMotion}
+            />
+            {/* The Low Line: 4 cols */}
+            <ProjectCard
+              project={projects[1]}
+              span="md:col-span-4"
+              prefersReducedMotion={prefersReducedMotion}
+            />
+            {/* Remaining projects: 6-col each */}
+            {projects.slice(2).map(project => (
+              <ProjectCard
+                key={project.name}
+                project={project}
+                span="md:col-span-6"
+                prefersReducedMotion={prefersReducedMotion}
+              />
             ))}
           </motion.div>
         </section>
 
-        {/* Multiplayer Games */}
-        <section className="mt-[120px]" role="region" aria-label="Multiplayer Games">
-          <SectionLabel prefersReducedMotion={prefersReducedMotion}>Multiplayer Games</SectionLabel>
+        {/* EXPERIMENTS */}
+        <section className="mb-24" role="region" aria-label="Experiments">
+          <SectionHeader label="Experiments" index="02 / Lab" prefersReducedMotion={prefersReducedMotion} />
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
           >
-            {multiplayerGames.map((project, i) => (
-              <Card key={project.name} project={project} index={i} />
+            {experiments.map(experiment => (
+              <ExperimentCard
+                key={experiment.name}
+                experiment={experiment}
+                prefersReducedMotion={prefersReducedMotion}
+              />
+            ))}
+          </motion.div>
+          <div className="mt-6">
+            <Link
+              to="/playground"
+              className="group inline-flex items-center gap-2 font-label text-xs text-text-muted hover:text-text transition-colors duration-200"
+            >
+              More in playground
+              <span className="group-hover:translate-x-0.5 transition-transform duration-200">&rarr;</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* GAMES */}
+        <section className="mb-24" role="region" aria-label="Games">
+          <SectionHeader label="Games" index="03 / Play" prefersReducedMotion={prefersReducedMotion} />
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+          >
+            {games.map((game, i) => (
+              <GameCard
+                key={game.name}
+                game={game}
+                index={i}
+                prefersReducedMotion={prefersReducedMotion}
+              />
             ))}
           </motion.div>
         </section>
       </main>
 
-      {/* About */}
-      <section className="px-6 max-w-5xl mx-auto mt-[120px] mb-20" role="region" aria-label="About">
-        <SectionLabel prefersReducedMotion={prefersReducedMotion}>About</SectionLabel>
-        {/* Contact links */}
-        <div className="flex gap-6 mt-8">
-          <a
-            href="https://x.com/michaelpyon"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Michael Pyon on X (Twitter)"
-            className="text-text-subtle text-xs tracking-wide hover:text-text transition-colors duration-200"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            X
-          </a>
-          <a
-            href="https://github.com/michaelpyon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-subtle text-xs tracking-wide hover:text-text transition-colors duration-200"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/michaelpyon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-subtle text-xs tracking-wide hover:text-text transition-colors duration-200"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            LinkedIn
-          </a>
-          <a
-            href="mailto:michaelpyon@gmail.com"
-            className="text-text-subtle text-xs tracking-wide hover:text-text transition-colors duration-200"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            Email
-          </a>
+      {/* Contact */}
+      <footer className="border-t border-border">
+        <div className="flex flex-col md:flex-row justify-between items-center py-12 px-6 max-w-screen-2xl mx-auto gap-4">
+          <span className="font-label text-[10px] uppercase tracking-widest font-medium text-text">
+            2026 Brooklyn, NY
+          </span>
+          <div className="flex gap-8">
+            {[
+              { label: 'X', href: 'https://x.com/michaelpyon' },
+              { label: 'GitHub', href: 'https://github.com/michaelpyon' },
+              { label: 'LinkedIn', href: 'https://linkedin.com/in/michaelpyon' },
+              { label: 'Email', href: 'mailto:michaelpyon@gmail.com' },
+            ].map(link => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith('mailto') ? undefined : '_blank'}
+                rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                className="font-label text-[10px] uppercase tracking-widest font-medium text-text-subtle hover:text-accent transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
-      </section>
+      </footer>
     </motion.div>
   )
 }
