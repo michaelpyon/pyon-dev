@@ -61,17 +61,6 @@ const experiments = [
   },
 ]
 
-// GAMES: Multiplayer browser games
-const games = [
-  {
-    name: 'High Roller',
-    tagline: '6 dice games in one app.',
-    players: '1+',
-    tags: ['Dice', 'Utility'],
-    url: 'https://high-roller-eight.vercel.app',
-    image: '/cards/high-roller.png',
-  },
-]
 
 const containerVariants = {
   hidden: {},
@@ -309,25 +298,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* GAMES */}
-        <section className="mb-24" role="region" aria-label="Games">
-          <SectionHeader label="Games" index="03 / Play" prefersReducedMotion={prefersReducedMotion} />
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-          >
-            {games.map(game => (
-              <ExperimentCard
-                key={game.name}
-                experiment={{ ...game, category: `${game.players} players` }}
-                prefersReducedMotion={prefersReducedMotion}
-              />
-            ))}
-          </motion.div>
-        </section>
       </main>
 
       {/* Contact */}
