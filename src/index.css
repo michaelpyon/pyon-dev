@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-body: 'General Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+  --font-label: 'Inter', system-ui, sans-serif;
 }
 
 @theme {
-  --color-bg: #F0EDE5;
-  --color-surface: #E8E5DD;
-  --color-surface-hover: #E0DDD5;
-  --color-text: #1A1A1A;
-  --color-text-muted: #78736A;
-  --color-text-subtle: #A8A29E;
-  --color-border: rgba(120,100,80,0.08);
-  --color-border-hover: rgba(120,100,80,0.15);
+  --color-bg: #fbf9f4;
+  --color-surface: #efeee6;
+  --color-surface-hover: #e8e9e0;
+  --color-text: #31332c;
+  --color-text-muted: #5e6058;
+  --color-text-subtle: #797c73;
+  --color-border: rgba(177,179,169,0.3);
+  --color-border-hover: rgba(177,179,169,0.5);
+  --color-accent: #9a453a;
 }
 
 html {
@@ -27,27 +28,36 @@ html {
 
 body {
   margin: 0;
+  line-height: 1.55;
 }
 
-/* Custom cursor only on devices with fine pointer */
-@media (hover: hover) and (pointer: fine) {
-  [data-cursor-card] {
-    cursor: none;
-  }
-}
-
-/* Editorial serif for display headings */
 .font-display {
   font-family: var(--font-display);
 }
 
-/* Reduced motion: disable all animations and transitions */
+.font-label {
+  font-family: var(--font-label);
+}
+
+/* Grayscale hover effect for project images */
+.img-grayscale {
+  filter: grayscale(100%);
+  transition: filter 0.7s ease-in-out;
+}
+.group:hover .img-grayscale {
+  filter: grayscale(0%);
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .img-grayscale {
+    filter: none;
   }
 }
 
@@ -69,12 +79,18 @@ body {
 
 /* Focus states */
 a:focus-visible {
-  outline: 2px solid #A8A29E;
+  outline: 2px solid #797c73;
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
-/* Selection color */
+/* Selection */
 ::selection {
-  background: rgba(26,26,26,0.12);
+  background: rgba(154,69,58,0.15);
+}
+
+/* Custom cursor only on devices with fine pointer */
+@media (hover: hover) and (pointer: fine) {
+  [data-cursor-card] {
+    cursor: none;
+  }
 }

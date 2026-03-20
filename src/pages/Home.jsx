@@ -69,6 +69,7 @@ const games = [
     players: '1+',
     tags: ['Dice', 'Utility'],
     url: 'https://high-roller-eight.vercel.app',
+    image: '/cards/high-roller.png',
   },
 ]
 
@@ -267,12 +268,12 @@ export default function Home() {
               span="md:col-span-4"
               prefersReducedMotion={prefersReducedMotion}
             />
-            {/* Remaining projects: 6-col each */}
+            {/* Remaining 3 projects: equal 4-col */}
             {projects.slice(2).map(project => (
               <ProjectCard
                 key={project.name}
                 project={project}
-                span="md:col-span-6"
+                span="md:col-span-4"
                 prefersReducedMotion={prefersReducedMotion}
               />
             ))}
@@ -312,16 +313,16 @@ export default function Home() {
         <section className="mb-24" role="region" aria-label="Games">
           <SectionHeader label="Games" index="03 / Play" prefersReducedMotion={prefersReducedMotion} />
           <motion.div
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
           >
-            {games.map((game, i) => (
-              <GameCard
+            {games.map(game => (
+              <ExperimentCard
                 key={game.name}
-                game={game}
-                index={i}
+                experiment={{ ...game, category: `${game.players} players` }}
                 prefersReducedMotion={prefersReducedMotion}
               />
             ))}
