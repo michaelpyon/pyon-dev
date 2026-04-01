@@ -43,8 +43,9 @@ export function FlagshipCard({
           className="md:col-span-8 overflow-hidden block"
           aria-label={`${project.name} case study`}
         >
-          <div className="bg-surface-high aspect-[16/9] flex items-end p-8 overflow-hidden">
-            <span className="font-display italic text-6xl sm:text-7xl text-text-subtle/20 flagship-img leading-none">
+          <div className="bg-surface-high aspect-[16/9] flex items-end p-8 overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-high/90 via-surface-high/40 to-transparent" />
+            <span className="font-display italic text-6xl sm:text-7xl text-text/10 flagship-img leading-none relative z-10">
               {project.name}
             </span>
           </div>
@@ -74,7 +75,7 @@ export function FlagshipCard({
   }
 
   return (
-    <motion.div variants={variants} className={`group ${stagger ? "mt-24" : ""}`}>
+    <motion.div variants={variants} className={`group ${stagger ? "mt-12" : ""}`}>
       <Link
         href={`/projects/${project.slug}`}
         data-cursor-card
@@ -82,8 +83,9 @@ export function FlagshipCard({
         aria-label={`${project.name} case study`}
       >
         <div className="mb-10 overflow-hidden">
-          <div className="bg-surface-high aspect-[4/5] flex items-end p-6 overflow-hidden">
-            <span className="font-display italic text-5xl text-text-subtle/20 flagship-img leading-none">
+          <div className="bg-surface-high aspect-[4/5] flex items-end p-6 overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-high/90 via-surface-high/40 to-transparent" />
+            <span className="font-display italic text-5xl text-text/10 flagship-img leading-none relative z-10">
               {project.name}
             </span>
           </div>

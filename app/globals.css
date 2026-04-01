@@ -101,7 +101,15 @@ body {
 .archive-card {
   border-top: 1px solid var(--color-border);
   padding-top: 1.5rem;
-  transition: color 200ms ease;
+  transition: color 200ms ease, background-color 200ms ease;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  border-radius: 0;
+}
+.archive-card:hover {
+  background-color: var(--color-surface);
 }
 .archive-card:hover h4 {
   color: var(--color-accent);
