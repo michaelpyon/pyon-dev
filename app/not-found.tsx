@@ -5,19 +5,19 @@ export default function NotFound() {
   return (
     <>
       <ThemeToggle />
-      <main id="main-content" className="px-6 pt-24 pb-20 max-w-5xl mx-auto">
+      <main id="main-content" className="px-6 pt-32 pb-24 max-w-5xl mx-auto sm:pt-40">
         <h1
-          className="font-display text-4xl sm:text-5xl text-text tracking-tight mb-4"
-          style={{ letterSpacing: "-1.5px" }}
+          className="font-display italic text-4xl sm:text-5xl lg:text-6xl text-text leading-[0.92] mb-5"
+          style={{ letterSpacing: "-0.03em" }}
         >
           Page not found
         </h1>
-        <p className="text-text-muted text-sm mb-8">
+        <p className="text-text-muted text-sm sm:text-base mb-10">
           Nothing here. Probably a typo.
         </p>
         <Link
           href="/"
-          className="text-xs tracking-wide text-text-muted hover:text-text transition-colors duration-200"
+          className="text-xs tracking-wide text-accent hover:text-accent-hover transition-colors duration-200"
           style={{ fontFamily: "var(--font-mono)" }}
         >
           &larr; Back to home

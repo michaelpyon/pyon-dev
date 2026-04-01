@@ -2,14 +2,14 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/lib/projects";
+import { domainLabels } from "@/lib/projects";
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 12, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 8 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -32,20 +32,18 @@ export function ProjectCard({
   return (
     <motion.div
       variants={variants}
-      whileHover={prefersReducedMotion ? undefined : { y: -2 }}
-      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-      className="group block bg-surface px-6 py-5 sm:px-8 sm:py-6 hover:bg-surface-hover focus-within:ring-2 focus-within:ring-[#78736A] focus-within:ring-offset-2 focus-within:ring-offset-bg"
+      className="group project-row bg-surface hover:bg-surface-hover px-5 py-4 sm:px-7 sm:py-5"
     >
-      <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-6">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
         {/* Left: index + name */}
-        <div className="flex items-baseline gap-3 sm:w-52 shrink-0">
+        <div className="flex items-center gap-3 sm:w-56 shrink-0">
           <span
-            className="text-text-subtle text-[11px] tabular-nums"
+            className="text-text-subtle text-[11px] tabular-nums w-5"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             {String(index + 1).padStart(2, "0")}
           </span>
-          <h3 className="text-lg font-semibold text-text tracking-tight leading-snug">
+          <h3 className="text-[15px] font-medium text-text tracking-tight leading-snug">
             {project.name}
           </h3>
         </div>
@@ -55,30 +53,38 @@ export function ProjectCard({
           {project.tagline}
         </p>
 
-        {/* Right: tech stack + links */}
+        {/* Right: domain pill + tech tags + links */}
         <div className="flex items-center gap-3 shrink-0 sm:pl-0 pl-8">
+          {/* Domain pill */}
+          <span
+            className="text-[10px] text-text-muted tracking-[0.06em] uppercase px-2.5 py-1 rounded-full bg-surface border border-border leading-none whitespace-nowrap"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            {domainLabels[project.domain]}
+          </span>
+
+          {/* Tech tags (desktop only) */}
           <div className="hidden lg:flex gap-1.5">
-            {project.tech.slice(0, 3).map((tech) => (
+            {project.tech.slice(0, 2).map((tech) => (
               <span
                 key={tech}
-                className="text-[11px] text-text-muted tracking-[0.02em] px-2 py-0.5 rounded-md leading-none"
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  boxShadow: "0 0 0 1px rgba(120,100,80,0.1)",
-                }}
+                className="text-[10px] text-text-subtle tracking-[0.02em] px-1.5 py-0.5 rounded leading-none bg-bg/50"
+                style={{ fontFamily: "var(--font-mono)" }}
               >
                 {tech}
               </span>
             ))}
           </div>
-          <div className="flex items-center gap-2">
+
+          {/* Links */}
+          <div className="flex items-center gap-2.5">
             {hasLive && (
               <a
                 href={project.liveUrl!}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor-card
-                className="text-[11px] font-medium tracking-[0.08em] uppercase text-accent hover:text-text transition-colors"
+                className="text-[10px] font-medium tracking-[0.08em] uppercase text-accent hover:text-accent-hover transition-colors"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 Live
@@ -89,7 +95,7 @@ export function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               data-cursor-card
-              className="text-text-subtle group-hover:text-text group-hover:translate-x-0.5 transition-all duration-200 text-xs"
+              className="text-text-subtle group-hover:text-accent transition-colors duration-200 text-xs"
               aria-label={`${project.name} on GitHub`}
             >
               &rarr;

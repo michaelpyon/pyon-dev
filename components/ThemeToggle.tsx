@@ -11,11 +11,10 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-pressed={night}
       aria-label={night ? "Switch to day mode" : "Switch to night mode"}
-      className="fixed z-50 size-9 flex items-center justify-center rounded-full bg-surface hover:bg-surface-hover transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-subtle"
+      className="fixed z-50 size-9 flex items-center justify-center rounded-full bg-surface hover:bg-surface-hover border border-border transition-colors duration-300"
       style={{
         top: "calc(env(safe-area-inset-top, 0px) + 1.5rem)",
         right: "calc(env(safe-area-inset-right, 0px) + 1.5rem)",
-        boxShadow: "0 0 0 1px var(--color-border)",
       }}
     >
       <span

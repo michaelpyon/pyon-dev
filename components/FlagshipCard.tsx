@@ -5,11 +5,11 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/lib/projects";
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -27,44 +27,42 @@ export function FlagshipCard({ project }: { project: Project }) {
       <Link
         href={`/projects/${project.slug}`}
         data-cursor-card
-        className="group block"
+        className="group block flagship-card rounded-lg overflow-hidden"
         aria-label={`${project.name} case study`}
       >
-        {/* Image placeholder */}
-        <div className="overflow-hidden bg-surface mb-4 aspect-[16/10] flex items-end p-6">
-          <span className="font-display italic text-4xl text-text-subtle/30">
+        {/* Image preview area */}
+        <div className="overflow-hidden bg-surface rounded-lg mb-5 aspect-[16/10] flex items-end p-6 border border-border group-hover:border-accent/40 transition-colors duration-300">
+          <span className="font-display italic text-4xl sm:text-5xl text-text-subtle/20 flagship-img leading-none">
             {project.name}
           </span>
         </div>
 
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="font-display italic text-2xl leading-none mb-2">
-              {project.name}
-            </h3>
-            <p className="text-text-muted text-sm max-w-md">
-              {project.tagline}
-            </p>
-            <div className="flex flex-wrap gap-1.5 mt-3">
-              {project.tech.slice(0, 3).map((t) => (
-                <span
-                  key={t}
-                  className="text-[11px] text-text-muted tracking-[0.02em] px-2 py-0.5 rounded-md leading-none"
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    boxShadow: "0 0 0 1px rgba(120,100,80,0.1)",
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+        <div>
+          <h3
+            className="font-display italic text-2xl sm:text-[1.75rem] text-text leading-tight mb-2"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            {project.name}
+          </h3>
+          <p className="text-text-muted text-sm leading-relaxed max-w-sm mb-4">
+            {project.tagline}
+          </p>
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {project.tech.slice(0, 3).map((t) => (
+              <span
+                key={t}
+                className="text-[11px] text-text-subtle tracking-[0.02em] px-2 py-0.5 rounded-md leading-none bg-surface"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                {t}
+              </span>
+            ))}
           </div>
           <span
-            aria-hidden="true"
-            className="text-text-subtle group-hover:text-accent group-focus-visible:text-accent transition-colors text-sm mt-1"
+            className="text-xs text-accent group-hover:text-accent-hover transition-colors duration-200 tracking-wide"
+            style={{ fontFamily: "var(--font-mono)" }}
           >
-            &#8599;
+            Read case study &rarr;
           </span>
         </div>
       </Link>
