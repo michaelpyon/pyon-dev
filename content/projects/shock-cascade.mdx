@@ -1,0 +1,21 @@
+## The Problem
+
+Macro risk is hard to reason about because disruptions don't stay in one lane. A supply chain shock in semiconductors ripples into auto manufacturing, consumer electronics, and eventually retail earnings. Existing tools show exposure to individual sectors but not the cascade path between them.
+
+## The Approach
+
+Built a causal graph simulator where users model a disruption (tariff, supply shortage, rate hike) and trace its cascade effects through interconnected sectors. The graph maps first-order, second-order, and third-order impacts, then overlays exposure onto a sample portfolio.
+
+Key decisions:
+- No AI/ML: the causal relationships are hand-mapped and transparent, not black-box predictions
+- Used D3.js force-directed graphs to make cascade paths visually traceable
+- Portfolio overlay shows dollar-weighted exposure at each cascade level
+- Deliberately kept the model simple enough that users can challenge the assumptions
+
+## The Outcome
+
+Prototype maps 12 major sectors with 40+ causal links. Users can simulate scenarios like "what happens to my portfolio if Taiwan chip production drops 30%" and see the cascade unfold step by step. The visualization makes second-order effects obvious in a way that spreadsheet models don't.
+
+## Reflection
+
+The biggest design decision was choosing transparency over sophistication. An ML model could predict more nuanced cascades, but you can't argue with it or learn from it. The hand-mapped graph forces users (and me) to think about WHY a disruption propagates, not just that it does. If I expanded this, I'd add historical scenario backtesting to validate the causal weights.
