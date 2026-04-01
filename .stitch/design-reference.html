@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Michael Pyon | Digital Curator &amp; Software Builder</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#3f0302",
+              "tertiary": "#005240",
+              "inverse-primary": "#ffb4a9",
+              "inverse-surface": "#30312e",
+              "surface-container-high": "#eae8e3",
+              "secondary-fixed": "#e3e3d9",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#c6c7bd",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#ffcec7",
+              "on-surface": "#1b1c19",
+              "on-secondary-fixed": "#1a1c16",
+              "error": "#ba1a1a",
+              "primary": "#7c2e25",
+              "surface": "#fbf9f4",
+              "primary-container": "#9a453a",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#62635b",
+              "primary-fixed": "#ffdad5",
+              "on-tertiary-container": "#95eace",
+              "on-surface-variant": "#554240",
+              "secondary": "#5d5f57",
+              "primary-fixed-dim": "#ffb4a9",
+              "surface-container-low": "#f5f3ee",
+              "surface-bright": "#fbf9f4",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "tertiary-fixed": "#9ef3d7",
+              "surface-container-lowest": "#ffffff",
+              "on-background": "#1b1c19",
+              "surface-variant": "#e4e2dd",
+              "tertiary-fixed-dim": "#82d6bb",
+              "outline-variant": "#dbc1bd",
+              "surface-dim": "#dbdad5",
+              "surface-container": "#f0eee9",
+              "secondary-container": "#e0e0d6",
+              "inverse-on-surface": "#f2f1ec",
+              "outline": "#88726f",
+              "tertiary-container": "#006c56",
+              "on-tertiary-fixed": "#002018",
+              "on-primary-fixed-variant": "#7b2e24",
+              "on-tertiary-fixed-variant": "#005140",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#464840",
+              "surface-tint": "#994439",
+              "background": "#fbf9f4",
+              "surface-container-highest": "#e4e2dd"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #fbf9f4;
+            color: #1b1c19;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-fixed selection:text-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-8 py-6 max-w-full bg-[#fbf9f4]/80 dark:bg-stone-950/80 backdrop-blur-md z-50">
+<div class="text-xl font-headline font-bold text-stone-900 dark:text-stone-100">
+            M. CURATOR
+        </div>
+<nav class="hidden md:flex space-x-12">
+<a class="font-label tracking-[0.1rem] uppercase text-[0.75rem] text-[#7c2e25] dark:text-[#9a453a] border-b-2 border-[#7c2e25] pb-1 hover:text-[#7c2e25] dark:hover:text-[#9a453a] transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-label tracking-[0.1rem] uppercase text-[0.75rem] text-stone-600 dark:text-stone-400 hover:text-[#7c2e25] dark:hover:text-[#9a453a] transition-colors duration-300" href="#">About</a>
+<a class="font-label tracking-[0.1rem] uppercase text-[0.75rem] text-stone-600 dark:text-stone-400 hover:text-[#7c2e25] dark:hover:text-[#9a453a] transition-colors duration-300" href="#">Archive</a>
+<a class="font-label tracking-[0.1rem] uppercase text-[0.75rem] text-stone-600 dark:text-stone-400 hover:text-[#7c2e25] dark:hover:text-[#9a453a] transition-colors duration-300" href="#">Contact</a>
+</nav>
+<button class="bg-[#7c2e25] text-white px-6 py-2 text-[0.75rem] font-label uppercase tracking-[0.1rem] hover:bg-primary-container transition-all active:scale-95 duration-200">
+            Get in Touch
+        </button>
+</header>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="px-8 md:px-24 pt-24 pb-48 max-w-7xl">
+<h1 class="text-5xl md:text-8xl font-headline italic leading-[1.1] text-on-surface max-w-5xl">
+                Michael Pyon builds <span class="text-primary-container">things</span> that should already exist.
+            </h1>
+<p class="mt-12 text-lg md:text-xl text-secondary max-w-xl font-light tracking-wide leading-relaxed">
+                An intentional approach to software design and engineering. Crafting digital artifacts that prioritize clarity, permanence, and human utility over fleeting trends.
+            </p>
+</section>
+<!-- Flagship Projects -->
+<section class="px-8 md:px-24 py-24 bg-surface-container-low">
+<div class="mb-16">
+<span class="font-label uppercase tracking-[0.2rem] text-[0.7rem] text-primary">Selected Works</span>
+</div>
+<div class="space-y-48">
+<!-- Project 1: Full Width -->
+<div class="group grid md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-8 overflow-hidden">
+<img class="w-full aspect-[16/9] object-cover filter grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out" data-alt="Minimalist abstract data visualization with geometric copper lines on a cream paper-textured background, editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7MuRdYVoPWZ6kLVtS5Qhw24ZJHbB57S5EJcHBF2Gq2iUHHMKjqcbm3AT2tDpM1GAk50Zuie3Gn0YWopAz129sBEL1j8lkFlke5fLQIWE_TBAJc5hXe26WMgXAxLVz5eDQgcd06c6SXRnQtv6yCHEwOhhG25YJgZclHbFZEkMtydee6Nd8p4ED5mBes9hTLABNzBsFF74ZVOs1sEE877d2RP9u-180CFHr_VGVzK3lY_i14POi4B1vJMnlZ-53TkpPZYYMP2ff_6g"/>
+</div>
+<div class="md:col-span-4 md:-ml-24 z-10">
+<span class="font-label text-[0.65rem] uppercase tracking-widest text-secondary mb-4 block">01 / Data Visualization</span>
+<h3 class="text-4xl md:text-5xl font-headline italic mb-6">Metropolitan Data Explorer</h3>
+<p class="text-secondary body-lg mb-8">A granular observation of urban shifts across the five boroughs, translated into a tactile interactive interface.</p>
+<a class="font-headline text-xl italic text-primary border-b-2 border-primary pb-1 hover:text-primary-container transition-colors" href="#">Read case study</a>
+</div>
+</div>
+<!-- Project 2 & 3: 2-Column Grid -->
+<div class="grid md:grid-cols-2 gap-24">
+<div class="group">
+<div class="mb-10 overflow-hidden">
+<img class="w-full aspect-[4/5] object-cover filter grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out" data-alt="Macro photography of a vintage brass scale balanced perfectly on a wooden desk, warm soft lighting, high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9YxV38RNUKCJBJX-9Ei-A1X-9DrMS3rkzN0yOsRiBgPxiBOBYxTR3vfZFwty5XKwTfdVMYnNZq8YdNKC_hvWtkiRvgZfo6dkxp2t0SeU6weAwoE42D1TZpSBWMBPxLOexyZGB3Hn52e9Tq7RYHD0e9UdVT1kkZanS8ZIaVtXDmVwdY-_A-hwEma2AZCKUkHZ91Ax5u8uNYkC38P6epUlf-XPe5wgmGILQQ7MvQiFF3EhxW6fKAAIi3eNYy9W3Tk_TgVffPHyicS4"/>
+</div>
+<span class="font-label text-[0.65rem] uppercase tracking-widest text-secondary mb-4 block">02 / Fintech</span>
+<h3 class="text-3xl font-headline italic mb-4">Quantify Finance Engine</h3>
+<p class="text-secondary body-lg mb-8 max-w-md">Proprietary algorithmic modeling for independent capital management. High precision, zero noise.</p>
+<a class="font-headline text-lg italic text-primary border-b-2 border-primary pb-1 hover:text-primary-container transition-colors" href="#">Read case study</a>
+</div>
+<div class="group mt-24">
+<div class="mb-10 overflow-hidden">
+<img class="w-full aspect-[4/5] object-cover filter grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out" data-alt="Abstract shadow play of an arcade machine silhouette in a dimly lit studio, atmospheric burnt sienna tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtuKfdcWFXj9eXrSfHSrMDk6rQDZIeu7A1vBPugIKLHLykqSR2jUPdd6aAbn1anxs8itVSgYm8CeZuc87D6GH1HaxxJFzBWcF4_HqluL2LXQjtsSvebmkrg7wv9851grD8ny8QgWO0-bLAK0dYW2y1dm2-6kacSqNg9Z5kc1N2U1vIJjgRJYhthGGfs0faeQk04iqndkN05A1_L0EcLpwLNgWeklwX_wZeOhu8WOSz7D0uzUyueU-0xtwwMeUF-5GwRfG50bkX8g0"/>
+</div>
+<span class="font-label text-[0.65rem] uppercase tracking-widest text-secondary mb-4 block">03 / Interaction</span>
+<h3 class="text-3xl font-headline italic mb-4">The Unseen Arcade</h3>
+<p class="text-secondary body-lg mb-8 max-w-md">A collection of browser-based experimental mechanics exploring the boundary between physics and play.</p>
+<a class="font-headline text-lg italic text-primary border-b-2 border-primary pb-1 hover:text-primary-container transition-colors" href="#">Read case study</a>
+</div>
+</div>
+</div>
+</section>
+<!-- The Project Archive -->
+<section class="px-8 md:px-24 py-48 bg-surface">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+<div>
+<h2 class="text-5xl md:text-7xl font-headline mb-4 italic">The Archive</h2>
+<p class="font-body text-secondary text-lg">43 projects across finance, data, games, and music.</p>
+</div>
+<div class="flex items-center space-x-4">
+<span class="font-label text-[0.7rem] uppercase tracking-widest text-secondary">Sort by:</span>
+<button class="font-label text-[0.7rem] uppercase tracking-widest font-semibold border-b border-on-surface">Recent</button>
+<button class="font-label text-[0.7rem] uppercase tracking-widest text-stone-400 hover:text-on-surface transition-colors">Alphabetical</button>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap gap-4 mb-20">
+<button class="px-8 py-3 bg-primary text-on-primary font-label text-[0.7rem] uppercase tracking-widest transition-transform duration-300 hover:-translate-y-0.5">All</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant font-label text-[0.7rem] uppercase tracking-widest transition-transform duration-300 hover:-translate-y-0.5">Finance</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant font-label text-[0.7rem] uppercase tracking-widest transition-transform duration-300 hover:-translate-y-0.5">NYC</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant font-label text-[0.7rem] uppercase tracking-widest transition-transform duration-300 hover:-translate-y-0.5">Games</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant font-label text-[0.7rem] uppercase tracking-widest transition-transform duration-300 hover:-translate-y-0.5">Music</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant font-label text-[0.7rem] uppercase tracking-widest transition-transform duration-300 hover:-translate-y-0.5">Tools</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface-variant font-label text-[0.7rem] uppercase tracking-widest transition-transform duration-300 hover:-translate-y-0.5">Data</button>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
+<!-- Actual Project -->
+<div class="border-t border-outline-variant pt-6 group">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-primary mb-2 block">Finance</span>
+<h4 class="text-xl font-headline italic mb-2 group-hover:text-primary transition-colors">Ledger.ly</h4>
+<p class="text-sm text-secondary font-light leading-relaxed">A zero-cloud personal accounting system for the privacy conscious.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 group">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-primary mb-2 block">Music</span>
+<h4 class="text-xl font-headline italic mb-2 group-hover:text-primary transition-colors">Sonic Canvas</h4>
+<p class="text-sm text-secondary font-light leading-relaxed">Real-time spectral analysis translated into SVG art paths.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 group">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-primary mb-2 block">Tools</span>
+<h4 class="text-xl font-headline italic mb-2 group-hover:text-primary transition-colors">Ghostwriter VM</h4>
+<p class="text-sm text-secondary font-light leading-relaxed">A headless markdown environment designed for deep focus work.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 group">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-primary mb-2 block">NYC</span>
+<h4 class="text-xl font-headline italic mb-2 group-hover:text-primary transition-colors">Transit Pulse</h4>
+<p class="text-sm text-secondary font-light leading-relaxed">Predictive MTA delays based on historical weather patterns.</p>
+</div>
+<!-- Placeholders to fill the 40+ count feel -->
+<div class="border-t border-outline-variant pt-6 opacity-60">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-400 mb-2 block">Data</span>
+<h4 class="text-xl font-headline italic mb-2">Iris Recognition</h4>
+<p class="text-sm text-stone-500 font-light leading-relaxed">Machine learning experiments in biometric validation.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 opacity-60">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-400 mb-2 block">Games</span>
+<h4 class="text-xl font-headline italic mb-2">Voxel Engine v2</h4>
+<p class="text-sm text-stone-500 font-light leading-relaxed">Custom C++ renderer for large scale destructible environments.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 opacity-60">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-400 mb-2 block">Tools</span>
+<h4 class="text-xl font-headline italic mb-2">Diff Checker Pro</h4>
+<p class="text-sm text-stone-500 font-light leading-relaxed">Visual comparison tool for high-density JSON files.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 opacity-60">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-400 mb-2 block">Music</span>
+<h4 class="text-xl font-headline italic mb-2">Tempo Matcher</h4>
+<p class="text-sm text-stone-500 font-light leading-relaxed">BPM detection via audio stream analysis.</p>
+</div>
+<!-- Repeat pattern for grid density -->
+<div class="border-t border-outline-variant pt-6 opacity-40 hidden md:block">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-300 mb-2 block">Finance</span>
+<h4 class="text-xl font-headline italic mb-2">Ticker Tape</h4>
+<p class="text-sm text-stone-400 font-light leading-relaxed">Desktop widget for real-time market sentiment.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 opacity-40 hidden md:block">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-300 mb-2 block">Data</span>
+<h4 class="text-xl font-headline italic mb-2">CSV Slicer</h4>
+<p class="text-sm text-stone-400 font-light leading-relaxed">Browser-based data cleaner for large datasets.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 opacity-40 hidden md:block">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-300 mb-2 block">NYC</span>
+<h4 class="text-xl font-headline italic mb-2">Diner Map</h4>
+<p class="text-sm text-stone-400 font-light leading-relaxed">A curated index of historic Manhattan coffee shops.</p>
+</div>
+<div class="border-t border-outline-variant pt-6 opacity-40 hidden md:block">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.15rem] text-stone-300 mb-2 block">Games</span>
+<h4 class="text-xl font-headline italic mb-2">Pathfinder</h4>
+<p class="text-sm text-stone-400 font-light leading-relaxed">Efficient A* implementation for 2D grid maps.</p>
+</div>
+</div>
+<div class="mt-24 text-center">
+<button class="font-headline italic text-2xl border-b-2 border-outline-variant pb-2 hover:border-primary transition-colors duration-500">
+                    Explore the full index (43)
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col items-center space-y-12 text-center full-width py-24 px-8 mt-24 bg-[#f0eee9] dark:bg-stone-900">
+<div class="max-w-3xl">
+<h2 class="text-4xl md:text-6xl font-headline italic mb-8">Ready to build something that lasts?</h2>
+<a class="text-2xl md:text-4xl font-body font-light border-b border-stone-400 pb-2 hover:text-primary hover:border-primary transition-all duration-300" href="mailto:hello@mcurator.com">hello@mcurator.com</a>
+</div>
+<div class="flex space-x-8 pt-12">
+<a class="font-sans tracking-tight text-stone-600 dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">LinkedIn</a>
+<a class="font-sans tracking-tight text-stone-600 dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">GitHub</a>
+<a class="font-sans tracking-tight text-stone-600 dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">Twitter</a>
+</div>
+<div class="pt-12 flex flex-col items-center">
+<span class="font-serif text-lg text-stone-900 dark:text-stone-100 mb-4 italic">M. CURATOR</span>
+<p class="font-sans tracking-tight text-stone-600 dark:text-stone-400 text-sm">
+                © 2024 Michael Curator. Built with Intent.
+            </p>
+</div>
+</footer>
+<!-- Vertical Progress Thread -->
+<div class="fixed left-4 top-0 h-full w-[1px] bg-stone-200 z-[100] hidden lg:block">
+<div class="w-full bg-primary h-1/4"></div>
+</div>
+</body></html>
