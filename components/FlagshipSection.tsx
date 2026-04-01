@@ -6,7 +6,7 @@ import { FlagshipCard } from "./FlagshipCard";
 
 const containerVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 export function FlagshipSection() {
@@ -15,7 +15,7 @@ export function FlagshipSection() {
 
   return (
     <section
-      className="mb-32 px-6 max-w-screen-2xl mx-auto"
+      className="mb-32 px-8 md:px-24 py-24 bg-surface"
       role="region"
       aria-label="Featured Projects"
     >
@@ -26,26 +26,44 @@ export function FlagshipSection() {
         }
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="flex items-baseline justify-between mb-10 border-b border-border pb-3"
+        className="mb-16"
       >
-        <h2 className="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-text-muted">
-          Featured Work
-        </h2>
-        <span className="font-label text-[10px] text-text-subtle">
-          01 / Case Studies
+        <span className="font-label uppercase tracking-[0.2em] text-[0.7rem] text-accent">
+          Selected Works
         </span>
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-10"
+        className="space-y-48"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        {flagships.map((project) => (
-          <FlagshipCard key={project.slug} project={project} />
-        ))}
+        {/* First flagship: full-width editorial layout */}
+        {flagships[0] && (
+          <FlagshipCard
+            key={flagships[0].slug}
+            project={flagships[0]}
+            layout="full"
+            index={0}
+          />
+        )}
+
+        {/* Remaining flagships: 2-column staggered */}
+        {flagships.length > 1 && (
+          <div className="grid md:grid-cols-2 gap-24">
+            {flagships.slice(1).map((project, i) => (
+              <FlagshipCard
+                key={project.slug}
+                project={project}
+                layout="half"
+                index={i + 1}
+                stagger={i === 1}
+              />
+            ))}
+          </div>
+        )}
       </motion.div>
     </section>
   );

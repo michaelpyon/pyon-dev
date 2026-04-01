@@ -2,22 +2,23 @@
 
 :root {
   --font-display: 'Newsreader', Georgia, serif;
-  --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-label: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @theme {
   --color-bg: #fbf9f4;
-  --color-surface: #efeee6;
-  --color-surface-hover: #e8e7df;
-  --color-text: #31332c;
-  --color-text-muted: #5e6058;
-  --color-text-subtle: #6a6d64;
-  --color-border: rgba(177,179,169,0.3);
-  --color-border-hover: rgba(177,179,169,0.5);
-  --color-accent: #9a453a;
-  --color-accent-hover: #7e3830;
+  --color-surface: #f5f3ee;
+  --color-surface-hover: #f0eee9;
+  --color-surface-high: #eae8e3;
+  --color-text: #1b1c19;
+  --color-text-muted: #5d5f57;
+  --color-text-subtle: #88726f;
+  --color-border: rgba(219,193,189,0.4);
+  --color-border-hover: rgba(219,193,189,0.6);
+  --color-accent: #7c2e25;
+  --color-accent-hover: #9a453a;
 }
 
 /* Night mode overrides */
@@ -25,12 +26,13 @@
   --color-bg: #1a1a18;
   --color-surface: #252523;
   --color-surface-hover: #2e2e2b;
+  --color-surface-high: #363633;
   --color-text: #e8e5dd;
   --color-text-muted: #a8a49c;
   --color-text-subtle: #8f8c84;
   --color-border: rgba(255,255,255,0.08);
   --color-border-hover: rgba(255,255,255,0.14);
-  --color-accent: #d4796e;
+  --color-accent: #ffb4a9;
   --color-accent-hover: #e08d83;
 }
 
@@ -56,6 +58,13 @@ body {
   font-family: var(--font-label);
 }
 
+/* ── Fixed navigation ────────────────────────────────────────────── */
+.nav-bar {
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 /* ── Flagship card hover effects ──────────────────────────────────── */
 .flagship-card {
   transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease;
@@ -65,14 +74,16 @@ body {
   box-shadow: 0 12px 40px rgba(0,0,0,0.06);
 }
 
-/* ── Flagship image area ─────────────────────────────────────────── */
+/* ── Flagship image: grayscale to color ──────────────────────────── */
 .flagship-img {
+  filter: grayscale(1);
   opacity: 0.92;
   transform: scale(1);
-  transition: transform 300ms ease-out, opacity 300ms ease-out;
+  transition: filter 1000ms ease-in-out, transform 300ms ease-out, opacity 300ms ease-out;
 }
 .group:hover .flagship-img,
 .group:focus-visible .flagship-img {
+  filter: grayscale(0);
   opacity: 1;
   transform: scale(1.02);
 }
@@ -86,12 +97,25 @@ body {
   border-left-color: var(--color-accent);
 }
 
+/* ── Archive card (border-top style) ─────────────────────────────── */
+.archive-card {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
+  transition: color 200ms ease;
+}
+.archive-card:hover h4 {
+  color: var(--color-accent);
+}
+
 /* ── Domain filter pill ──────────────────────────────────────────── */
 .filter-pill {
-  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+.filter-pill:hover {
+  transform: translateY(-1px);
 }
 .filter-pill-active {
-  background-color: var(--color-text);
+  background-color: var(--color-accent);
   color: var(--color-bg);
 }
 
@@ -107,6 +131,7 @@ body {
     transform: none;
   }
   .flagship-img {
+    filter: none;
     opacity: 1;
     transform: none;
   }
@@ -140,10 +165,10 @@ button:focus-visible {
 
 /* ── Selection ───────────────────────────────────────────────────── */
 ::selection {
-  background: rgba(154,69,58,0.15);
+  background: rgba(124,46,37,0.15);
 }
 [data-theme="night"] ::selection {
-  background: rgba(212,121,110,0.25);
+  background: rgba(255,180,169,0.25);
 }
 
 /* ── Night mode scrollbar ────────────────────────────────────────── */

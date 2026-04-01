@@ -6,7 +6,7 @@ export function Hero() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <header className="px-6 pt-32 pb-24 max-w-screen-2xl mx-auto sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-36">
+    <header className="px-8 md:px-24 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-48 max-w-7xl">
       <motion.h1
         initial={
           prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 }
@@ -17,12 +17,12 @@ export function Hero() {
           ease: [0.16, 1, 0.3, 1],
           delay: 0.1,
         }}
-        className="font-display italic text-5xl sm:text-7xl lg:text-8xl xl:text-9xl text-text font-normal leading-[0.92] max-w-4xl"
+        className="font-display italic text-5xl sm:text-7xl lg:text-8xl text-text font-normal leading-[1.1] max-w-5xl"
         style={{ letterSpacing: "-0.03em" }}
       >
-        Builder who ships
-        <br />
-        <span className="text-text-muted">constantly.</span>
+        Michael Pyon builds{" "}
+        <span className="text-accent-hover">things</span> that should already
+        exist.
       </motion.h1>
       <motion.p
         initial={
@@ -34,7 +34,7 @@ export function Hero() {
           ease: [0.16, 1, 0.3, 1],
           delay: 0.35,
         }}
-        className="text-text-muted text-base sm:text-lg mt-8 max-w-lg leading-relaxed"
+        className="text-text-muted text-lg md:text-xl mt-12 max-w-xl font-light tracking-wide leading-relaxed"
       >
         43 projects across finance, NYC, music, and games. Turning curiosity
         into working software.

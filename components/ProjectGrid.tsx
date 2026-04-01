@@ -35,81 +35,81 @@ export function ProjectGrid() {
   }, [activeDomain, sortBy]);
 
   const pillClass = (active: boolean) =>
-    `filter-pill text-[11px] tracking-[0.06em] uppercase px-3.5 py-1.5 rounded-full border ${
+    `filter-pill text-[0.7rem] tracking-[0.15em] uppercase px-8 py-3 font-label ${
       active
-        ? "bg-accent text-bg border-accent font-medium"
-        : "bg-surface text-text-muted border-border hover:bg-surface-hover hover:border-border-hover"
+        ? "filter-pill-active"
+        : "bg-surface-high text-text-muted hover:bg-surface-hover"
     }`;
 
   return (
     <section
-      className="mb-32 px-6 max-w-screen-2xl mx-auto"
+      className="mb-32 px-8 md:px-24 py-48"
       role="region"
       aria-label="All Projects"
     >
-      <motion.div
-        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
-        whileInView={
-          prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }
-        }
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="flex items-baseline justify-between mb-10 border-b border-border pb-3"
-      >
-        <h2 className="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-text-muted">
-          All Projects
-        </h2>
-        <span className="font-label text-[10px] text-text-subtle">
-          02 / Index
-        </span>
-      </motion.div>
-
-      {/* Filters: desktop */}
-      <div className="hidden md:flex items-center gap-3 mb-8">
-        <div className="flex gap-2 flex-wrap">
-          <button
-            onClick={() => setActiveDomain(null)}
-            className={pillClass(activeDomain === null)}
-            style={{ fontFamily: "var(--font-mono)" }}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+        <div>
+          <h2
+            className="text-5xl md:text-7xl font-display italic mb-4"
+            style={{ letterSpacing: "-0.02em" }}
           >
-            All
-          </button>
-          {domains.map((d) => (
-            <button
-              key={d}
-              onClick={() => setActiveDomain(activeDomain === d ? null : d)}
-              className={pillClass(activeDomain === d)}
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              {domainLabels[d]}
-            </button>
-          ))}
+            The Archive
+          </h2>
+          <p className="text-text-muted text-lg">
+            {projects.length} projects across finance, data, games, and music.
+          </p>
         </div>
-
-        <div className="ml-auto flex gap-2">
+        <div className="flex items-center space-x-4">
+          <span className="font-label text-[0.7rem] uppercase tracking-widest text-text-muted">
+            Sort by:
+          </span>
           <button
             onClick={() => setSortBy("date")}
-            className={pillClass(sortBy === "date")}
-            style={{ fontFamily: "var(--font-mono)" }}
+            className={`font-label text-[0.7rem] uppercase tracking-widest ${
+              sortBy === "date"
+                ? "font-semibold border-b border-text"
+                : "text-text-subtle hover:text-text transition-colors"
+            }`}
           >
-            Newest
+            Recent
           </button>
           <button
             onClick={() => setSortBy("name")}
-            className={pillClass(sortBy === "name")}
-            style={{ fontFamily: "var(--font-mono)" }}
+            className={`font-label text-[0.7rem] uppercase tracking-widest ${
+              sortBy === "name"
+                ? "font-semibold border-b border-text"
+                : "text-text-subtle hover:text-text transition-colors"
+            }`}
           >
-            A-Z
+            Alphabetical
           </button>
         </div>
+      </div>
+
+      {/* Filters: desktop */}
+      <div className="hidden md:flex flex-wrap gap-4 mb-20">
+        <button
+          onClick={() => setActiveDomain(null)}
+          className={pillClass(activeDomain === null)}
+        >
+          All
+        </button>
+        {domains.map((d) => (
+          <button
+            key={d}
+            onClick={() => setActiveDomain(activeDomain === d ? null : d)}
+            className={pillClass(activeDomain === d)}
+          >
+            {domainLabels[d]}
+          </button>
+        ))}
       </div>
 
       {/* Filters: mobile collapsible */}
       <div className="md:hidden mb-8">
         <button
           onClick={() => setFiltersOpen(!filtersOpen)}
-          className="flex items-center gap-2 text-[11px] tracking-[0.06em] uppercase text-text-muted mb-4"
-          style={{ fontFamily: "var(--font-mono)" }}
+          className="flex items-center gap-2 text-[0.7rem] tracking-[0.15em] uppercase text-text-muted font-label mb-4"
           aria-expanded={filtersOpen}
         >
           <span>Filters</span>
@@ -124,44 +124,24 @@ export function ProjectGrid() {
         </button>
 
         {filtersOpen && (
-          <div className="flex flex-col gap-3 mb-5">
-            <div className="flex gap-2 flex-wrap">
+          <div className="flex flex-wrap gap-3 mb-5">
+            <button
+              onClick={() => setActiveDomain(null)}
+              className={pillClass(activeDomain === null)}
+            >
+              All
+            </button>
+            {domains.map((d) => (
               <button
-                onClick={() => setActiveDomain(null)}
-                className={pillClass(activeDomain === null)}
-                style={{ fontFamily: "var(--font-mono)" }}
+                key={d}
+                onClick={() =>
+                  setActiveDomain(activeDomain === d ? null : d)
+                }
+                className={pillClass(activeDomain === d)}
               >
-                All
+                {domainLabels[d]}
               </button>
-              {domains.map((d) => (
-                <button
-                  key={d}
-                  onClick={() =>
-                    setActiveDomain(activeDomain === d ? null : d)
-                  }
-                  className={pillClass(activeDomain === d)}
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  {domainLabels[d]}
-                </button>
-              ))}
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setSortBy("date")}
-                className={pillClass(sortBy === "date")}
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                Newest
-              </button>
-              <button
-                onClick={() => setSortBy("name")}
-                className={pillClass(sortBy === "name")}
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                A-Z
-              </button>
-            </div>
+            ))}
           </div>
         )}
       </div>
@@ -181,7 +161,7 @@ export function ProjectGrid() {
         </div>
       ) : (
         <motion.div
-          className="flex flex-col gap-px bg-border rounded-lg overflow-hidden"
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
