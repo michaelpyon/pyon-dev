@@ -1,0 +1,20 @@
+## The Problem
+
+Planning a music festival trip means juggling flights, hotels, tickets, and ground transport across dozens of tabs. No tool compares the total cost of attending different festivals from your specific airport. You're left guessing which trip is actually affordable.
+
+## The Approach
+
+Built a cost comparison engine that pulls real-time data from 3 APIs: Amadeus for flights, SerpApi for hotel pricing, and Ticketmaster for ticket availability. The user enters their home airport, picks festivals they're interested in, and gets a side-by-side breakdown of total trip cost.
+
+Key decisions:
+- Used Amadeus flight search API for accurate fare data instead of scraping
+- Aggregated hotel costs per-night from SerpApi to avoid rate-limited booking APIs
+- Built a normalized cost model that accounts for festival duration, not just per-day averages
+
+## The Outcome
+
+Working prototype deployed on Railway. Users can compare 5+ festivals simultaneously with cost breakdowns by category (flights, lodging, tickets, food estimate). The tool surfaces non-obvious value: sometimes the "expensive" festival in Europe costs less total than the nearby one with cheap tickets but no affordable flights.
+
+## Reflection
+
+The biggest challenge was API rate limits. Amadeus has strict quotas on their free tier, so the app caches aggressively and batches requests. If I rebuilt this, I'd add a "share comparison" feature so users could send their research to friends planning together.
