@@ -36,7 +36,7 @@ export function Hero() {
         }}
         className="text-text-muted text-lg md:text-xl mt-12 max-w-xl font-light tracking-wide leading-relaxed"
       >
-        43 projects across finance, NYC, music, and games. Turning curiosity
+        44 projects across finance, NYC, music, and games. Turning curiosity
         into working software.
       </motion.p>
     </header>
