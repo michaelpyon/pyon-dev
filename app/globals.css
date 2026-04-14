@@ -90,11 +90,10 @@ body {
 
 /* ── Project card hover ──────────────────────────────────────────── */
 .project-row {
-  transition: background-color 200ms ease, border-color 200ms ease;
-  border-left: 3px solid transparent;
+  transition: background-color 200ms ease;
 }
 .project-row:hover {
-  border-left-color: var(--color-accent);
+  background-color: var(--color-surface);
 }
 
 /* ── Archive card (border-top style) ─────────────────────────────── */
