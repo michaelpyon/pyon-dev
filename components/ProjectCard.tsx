@@ -51,7 +51,7 @@ export function ProjectCard({
             target="_blank"
             rel="noopener noreferrer"
             data-cursor-card
-            className="text-[10px] font-medium tracking-[0.08em] uppercase text-accent hover:text-accent-hover transition-colors"
+            className="inline-flex items-center min-h-[44px] px-3 text-[10px] font-medium tracking-[0.08em] uppercase text-accent hover:text-accent-hover hover:bg-surface rounded transition-colors"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             Live
@@ -62,7 +62,7 @@ export function ProjectCard({
           target="_blank"
           rel="noopener noreferrer"
           data-cursor-card
-          className="text-text-subtle group-hover:text-accent transition-colors duration-200 text-xs"
+          className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-text-subtle group-hover:text-accent hover:bg-surface rounded transition-colors duration-200 text-sm"
           aria-label={`${project.name} on GitHub`}
         >
           &rarr;

@@ -65,7 +65,7 @@ export function FlagshipCard({
           </p>
           <Link
             href={`/projects/${project.slug}`}
-            className="font-display text-xl italic text-accent border-b-2 border-accent pb-1 hover:text-accent-hover transition-colors"
+            className="inline-flex items-center h-11 font-display text-xl italic text-accent border-b-2 border-accent hover:text-accent-hover transition-colors"
           >
             Read case study
           </Link>

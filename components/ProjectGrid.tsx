@@ -65,7 +65,7 @@ export function ProjectGrid() {
           </span>
           <button
             onClick={() => setSortBy("date")}
-            className={`font-label text-[0.7rem] uppercase tracking-widest ${
+            className={`font-label text-[0.7rem] uppercase tracking-widest h-11 px-2 ${
               sortBy === "date"
                 ? "font-semibold border-b border-text"
                 : "text-text-subtle hover:text-text transition-colors"
@@ -75,7 +75,7 @@ export function ProjectGrid() {
           </button>
           <button
             onClick={() => setSortBy("name")}
-            className={`font-label text-[0.7rem] uppercase tracking-widest ${
+            className={`font-label text-[0.7rem] uppercase tracking-widest h-11 px-2 ${
               sortBy === "name"
                 ? "font-semibold border-b border-text"
                 : "text-text-subtle hover:text-text transition-colors"
@@ -109,7 +109,7 @@ export function ProjectGrid() {
       <div className="md:hidden mb-8">
         <button
           onClick={() => setFiltersOpen(!filtersOpen)}
-          className="flex items-center gap-2 text-[0.7rem] tracking-[0.15em] uppercase text-text-muted font-label mb-4"
+          className="flex items-center gap-2 h-11 text-[0.7rem] tracking-[0.15em] uppercase text-text-muted font-label mb-4"
           aria-expanded={filtersOpen}
         >
           <span>Filters</span>
