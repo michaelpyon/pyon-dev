@@ -22,7 +22,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Amadeus API", "SerpApi", "Ticketmaster API"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/festival-optimizer",
-    liveUrl: "https://festival-companion-production.up.railway.app",
+    liveUrl: "https://festival-optimizer-app.vercel.app",
     flagship: true,
   },
   {
@@ -33,7 +33,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "API Aggregation", "Charts"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/menswear-market-pulse",
-    liveUrl: "https://menswear.michaelpyon.com",
+    liveUrl: "https://menswear-intel.vercel.app",
     flagship: true,
   },
   {
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "D3.js", "Causal Graphs"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/shock-cascade",
-    liveUrl: null,
+    liveUrl: "https://shock-cascade-rebuild.vercel.app",
     flagship: true,
   },
 
@@ -57,7 +57,18 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Reddit API", "NLP"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/narrative-edge",
-    liveUrl: null,
+    liveUrl: "https://narrative-edge.vercel.app",
+    flagship: false,
+  },
+  {
+    name: "Fulcrum Finder",
+    slug: "fulcrum-finder",
+    tagline: "Financial distress screener. Surface companies near tipping points before consensus catches on.",
+    domain: "finance",
+    tech: ["React", "TypeScript", "Recharts", "Financial APIs"],
+    date: "2026-03",
+    url: "https://github.com/michaelpyon/fulcrum-finder",
+    liveUrl: "https://fulcrum-finder.vercel.app",
     flagship: false,
   },
   {
@@ -68,7 +79,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Web Scraping"],
     date: "2026-03",
     url: "https://github.com/michaelpyon",
-    liveUrl: null,
+    liveUrl: "https://card-scout-seven.vercel.app",
     flagship: false,
   },
   {
@@ -79,7 +90,7 @@ export const projects: Project[] = [
     tech: ["React", "Mapbox", "Wine API"],
     date: "2026-02",
     url: "https://github.com/michaelpyon/VintageMap",
-    liveUrl: "https://vintage.michaelpyon.com",
+    liveUrl: "https://vintage-map.vercel.app",
     flagship: false,
   },
   {
@@ -103,7 +114,7 @@ export const projects: Project[] = [
     tech: ["React", "MTA API", "Node.js"],
     date: "2026-02",
     url: "https://github.com/michaelpyon/subway-shame",
-    liveUrl: "https://subway.michaelpyon.com",
+    liveUrl: "https://subway-shame.vercel.app",
     flagship: false,
   },
   {
@@ -114,7 +125,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "NYC Open Data"],
     date: "2026-03",
     url: "https://github.com/michaelpyon",
-    liveUrl: null,
+    liveUrl: "https://pulse-nyc.vercel.app",
     flagship: false,
   },
   {
@@ -147,7 +158,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "StreetEasy", "NYC Open Data"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/nyc-blockscore",
-    liveUrl: null,
+    liveUrl: "https://nyc-blockscore-app.vercel.app",
     flagship: false,
   },
   {
@@ -158,7 +169,7 @@ export const projects: Project[] = [
     tech: ["React", "Mapbox", "TypeScript"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/archimap",
-    liveUrl: null,
+    liveUrl: "https://archimap-pink.vercel.app",
     flagship: false,
   },
   {
@@ -180,7 +191,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "NYC Open Data"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/gap-finder-nyc",
-    liveUrl: "https://gap-finder-nyc.vercel.app",
+    liveUrl: "https://gap-finder.pyon.dev",
     flagship: false,
   },
   {
@@ -202,7 +213,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Matching Engine"],
     date: "2026-03",
     url: "https://github.com/michaelpyon",
-    liveUrl: null,
+    liveUrl: "https://give-local-nyc.vercel.app",
     flagship: false,
   },
 
@@ -226,7 +237,7 @@ export const projects: Project[] = [
     tech: ["TypeScript", "MediaPipe", "Web Audio API"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/photo-booth-music",
-    liveUrl: "https://air-composer.michaelpyon.com",
+    liveUrl: "https://air-composer.vercel.app",
     flagship: false,
   },
   {
@@ -237,7 +248,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "Web Audio API"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/keyboard-drummer",
-    liveUrl: "https://michaelpyon.github.io/keyboard-drummer/",
+    liveUrl: "https://keyboard-drummer.vercel.app",
     flagship: false,
   },
   {
@@ -259,7 +270,7 @@ export const projects: Project[] = [
     tech: ["React", "Three.js", "TypeScript"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/vinyl-discovery",
-    liveUrl: null,
+    liveUrl: "https://vinyl-discovery.vercel.app",
     flagship: false,
   },
   {
@@ -270,7 +281,7 @@ export const projects: Project[] = [
     tech: ["TypeScript", "Spotify API", "Setlist.fm API"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/concert-playlist",
-    liveUrl: null,
+    liveUrl: "https://concert.michaelpyon.com",
     flagship: false,
   },
   {
@@ -294,7 +305,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Tracker.gg API"],
     date: "2026-02",
     url: "https://github.com/michaelpyon/ShooterDigest",
-    liveUrl: "https://shooter.michaelpyon.com",
+    liveUrl: "https://shooter-digest-app.vercel.app",
     flagship: false,
   },
   {
@@ -350,6 +361,17 @@ export const projects: Project[] = [
     date: "2026-03",
     url: "https://github.com/michaelpyon/Freeze-Frame-Claude",
     liveUrl: null,
+    flagship: false,
+  },
+  {
+    name: "Inflation Race",
+    slug: "inflation-race",
+    tagline: "Roguelike economics arcade game. Outrun inflation through procedurally generated market events.",
+    domain: "games",
+    tech: ["React", "Canvas", "Game Loop"],
+    date: "2026-03",
+    url: "https://github.com/michaelpyon/inflation-race",
+    liveUrl: "https://inflation-race.vercel.app",
     flagship: false,
   },
   {
