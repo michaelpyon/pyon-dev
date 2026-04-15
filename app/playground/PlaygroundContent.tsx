@@ -38,6 +38,16 @@ const categories = [
         desktopOnly: false,
       },
       {
+        name: "Rhythm Typer",
+        tagline:
+          "Type to the beat. Words fall, you catch them. Typing speed meets rhythm game.",
+        stack: ["JavaScript", "Canvas", "Web Audio API"],
+        url: "https://rhythm-typer.vercel.app",
+        status: "live" as const,
+        desktopOnly: true,
+        desktopNote: "Desktop keyboard",
+      },
+      {
         name: "Jazz Guitar Solo",
         tagline:
           "Improvise jazz guitar lines over chord changes. AI-assisted scale suggestions.",
@@ -52,6 +62,35 @@ const categories = [
     label: "Games",
     description: "Browser-based games. No installs, no accounts.",
     items: [
+      {
+        name: "Inflation Race",
+        tagline:
+          "Dodge inflation across 3 economic eras. Protect your purchasing power in a roguelike survival game.",
+        stack: ["JavaScript", "Canvas", "Game Engine"],
+        url: "https://inflation-race.vercel.app",
+        status: "live" as const,
+        desktopOnly: true,
+        desktopNote: "Desktop recommended",
+      },
+      {
+        name: "Chief Jumper",
+        tagline:
+          "Endless runner with a corporate twist. Jump, dodge, climb the org chart.",
+        stack: ["JavaScript", "Canvas", "Sprite Animation"],
+        url: "https://chief-jumper.vercel.app",
+        status: "live" as const,
+        desktopOnly: false,
+      },
+      {
+        name: "Lockstep",
+        tagline:
+          "March to the beat. Press space on rhythm, switch to off-beat when cued.",
+        stack: ["JavaScript", "Web Audio API"],
+        url: "https://lockstep.vercel.app",
+        status: "live" as const,
+        desktopOnly: true,
+        desktopNote: "Desktop keyboard",
+      },
       {
         name: "Bomb Council",
         tagline:
@@ -96,6 +135,15 @@ const categories = [
         desktopNote: "Desktop only",
       },
       {
+        name: "Pollen Season",
+        tagline:
+          "NYC pollen tracking with borough maps, 7-day forecasts, and year-over-year comparisons.",
+        stack: ["React", "Framer Motion", "SVG Maps"],
+        url: "https://pollen-season.vercel.app",
+        status: "live" as const,
+        desktopOnly: false,
+      },
+      {
         name: "Political Kinetic Grid",
         tagline:
           "Kinetic Grid meets election data. Watch voting patterns ripple through a force-directed field.",
@@ -104,6 +152,40 @@ const categories = [
         status: "coming-soon" as const,
         desktopOnly: true,
         desktopNote: "Desktop only",
+      },
+    ],
+  },
+  {
+    label: "Maps & Discovery",
+    description: "Explore the world through data-driven maps.",
+    items: [
+      {
+        name: "CrateDigger",
+        tagline:
+          "Spin a 3D globe, drop pins, discover record stores and local genres worldwide.",
+        stack: ["React", "react-globe.gl", "Three.js"],
+        url: "https://vinyl-discovery.vercel.app",
+        status: "live" as const,
+        desktopOnly: true,
+        desktopNote: "WebGL required",
+      },
+      {
+        name: "ArchiMap",
+        tagline:
+          "Guided Art Deco walking tour of Midtown Manhattan. 12 stops with architectural stories.",
+        stack: ["React", "Leaflet", "PWA"],
+        url: "https://archimap.vercel.app",
+        status: "live" as const,
+        desktopOnly: false,
+      },
+      {
+        name: "Random Pin Cuisine",
+        tagline:
+          "Drop a pin anywhere on a map, find matching NYC restaurants with Michelin badges.",
+        stack: ["React", "Mapbox", "Yelp API"],
+        url: "https://random-pin-cuisine.vercel.app",
+        status: "live" as const,
+        desktopOnly: false,
       },
     ],
   },
