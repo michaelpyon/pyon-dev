@@ -160,14 +160,75 @@ function PlaygroundCard({
   prefersReducedMotion: boolean | null;
 }) {
   const isLive = item.status === "live";
+  const Tag = isLive ? motion.a : motion.div;
+
+  const cardContent = (
+    <div className="p-5 sm:p-6">
+      <div className="flex items-start justify-between mb-3">
+        <h3 className="text-sm font-medium text-text tracking-tight sm:text-base">
+          {item.name}
+        </h3>
+        <div className="flex items-center gap-2 shrink-0 ml-3">
+          {item.desktopOnly && isLive && (
+            <span
+              className="text-[9px] text-text-subtle tracking-wide px-1.5 py-0.5 rounded border border-border bg-bg"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {item.desktopNote || "Desktop"}
+            </span>
+          )}
+          {isLive ? (
+            <span className="flex items-center gap-1">
+              <span
+                className="inline-block w-1.5 h-1.5 rounded-full bg-accent/70"
+              />
+              <span
+                className="text-[10px] font-medium tracking-wide uppercase text-accent"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Play
+              </span>
+            </span>
+          ) : (
+            <span
+              className="text-[10px] text-text-subtle font-medium tracking-wide uppercase"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              Soon
+            </span>
+          )}
+        </div>
+      </div>
+
+      <p
+        className={`text-xs leading-relaxed mb-4 ${isLive ? "text-text-muted" : "text-text-subtle"}`}
+      >
+        {item.tagline}
+      </p>
+
+      <div className="flex flex-wrap gap-1.5">
+        {item.stack.map((tech) => (
+          <span
+            key={tech}
+            className="text-[10px] text-text-subtle tracking-wide px-1.5 py-0.5 rounded bg-bg/50 border border-border"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
-    <motion.a
-      href={isLive ? (item.url ?? undefined) : undefined}
-      target={isLive ? "_blank" : undefined}
-      rel={isLive ? "noopener noreferrer" : undefined}
-      data-cursor-card={isLive ? true : undefined}
-      aria-label={`${item.name} — ${isLive ? "Live" : "Coming soon"}`}
+    <Tag
+      {...(isLive ? {
+        href: item.url ?? undefined,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        "data-cursor-card": true,
+      } : {})}
+      aria-label={`${item.name} ${isLive ? "(Live)" : "(Coming soon)"}`}
       variants={prefersReducedMotion ? reducedCardVariants : cardVariants}
       whileHover={
         isLive && !prefersReducedMotion
@@ -181,62 +242,8 @@ function PlaygroundCard({
           : "border-border bg-surface opacity-50 cursor-default"
       }`}
     >
-      <div className="p-5 sm:p-6">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-sm font-medium text-text tracking-tight sm:text-base">
-            {item.name}
-          </h3>
-          <div className="flex items-center gap-2 shrink-0 ml-3">
-            {item.desktopOnly && isLive && (
-              <span
-                className="text-[9px] text-text-subtle tracking-wide px-1.5 py-0.5 rounded border border-border bg-bg"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                {item.desktopNote || "Desktop"}
-              </span>
-            )}
-            {isLive ? (
-              <span className="flex items-center gap-1">
-                <span
-                  className="inline-block w-1.5 h-1.5 rounded-full bg-accent/70"
-                />
-                <span
-                  className="text-[10px] font-medium tracking-wide uppercase text-accent"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Play
-                </span>
-              </span>
-            ) : (
-              <span
-                className="text-[10px] text-text-subtle font-medium tracking-wide uppercase"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                Soon
-              </span>
-            )}
-          </div>
-        </div>
-
-        <p
-          className={`text-xs leading-relaxed mb-4 ${isLive ? "text-text-muted" : "text-text-subtle"}`}
-        >
-          {item.tagline}
-        </p>
-
-        <div className="flex flex-wrap gap-1.5">
-          {item.stack.map((tech) => (
-            <span
-              key={tech}
-              className="text-[10px] text-text-subtle tracking-wide px-1.5 py-0.5 rounded bg-bg/50 border border-border"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </motion.a>
+      {cardContent}
+    </Tag>
   );
 }
 
