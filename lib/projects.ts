@@ -79,7 +79,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Web Scraping"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/card-scout",
-    liveUrl: "https://card-scout-seven.vercel.app",
+    liveUrl: "https://card-scout.vercel.app",
     flagship: false,
   },
   {
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "API Aggregation"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/game-pulse",
-    liveUrl: null,
+    liveUrl: "https://game-pulse.vercel.app",
     flagship: false,
   },
 
@@ -191,7 +191,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "NYC Open Data"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/gap-finder-nyc",
-    liveUrl: "https://gap-finder.pyon.dev",
+    liveUrl: "https://gap-finder-nyc.vercel.app",
     flagship: false,
   },
   {
@@ -202,7 +202,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Census API"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/not-that-unique-nyc",
-    liveUrl: null,
+    liveUrl: "https://ntun-nyc.vercel.app",
     flagship: false,
   },
   {
@@ -305,7 +305,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Game Engine"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/studio-commander",
-    liveUrl: null,
+    liveUrl: "https://studio-commander.vercel.app",
     flagship: false,
   },
   {
@@ -338,7 +338,7 @@ export const projects: Project[] = [
     tech: ["JavaScript", "React", "Formula Parser"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/excel-escape",
-    liveUrl: null,
+    liveUrl: "https://excel-escape.vercel.app",
     flagship: false,
   },
   {
@@ -417,7 +417,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Local Storage"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/inner-circle",
-    liveUrl: null,
+    liveUrl: "https://inner-circle-crm.vercel.app",
     flagship: false,
   },
   {
@@ -439,7 +439,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Node.js"],
     date: "2026-03",
     url: "https://github.com/michaelpyon/massage-os",
-    liveUrl: null,
+    liveUrl: "https://massage-os-deploy.vercel.app",
     flagship: false,
   },
   {
@@ -507,7 +507,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "MapLibre", "SunCalc"],
     date: "2026-04",
     url: "https://github.com/michaelpyon/sunscope",
-    liveUrl: null,
+    liveUrl: "https://sunscope-eta.vercel.app",
     flagship: false,
   },
   {

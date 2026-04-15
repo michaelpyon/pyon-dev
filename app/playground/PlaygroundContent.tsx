@@ -86,8 +86,8 @@ const categories = [
         tagline:
           "March to the beat. Press space on rhythm, switch to off-beat when cued.",
         stack: ["JavaScript", "Web Audio API"],
-        url: "https://lockstep.vercel.app",
-        status: "live" as const,
+        url: null,
+        status: "coming-soon" as const,
         desktopOnly: true,
         desktopNote: "Desktop keyboard",
       },
