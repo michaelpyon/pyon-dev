@@ -497,6 +497,30 @@ export const projects: Project[] = [
     liveUrl: null,
     flagship: false,
   },
+
+  // ── New additions ──────────────────────────────────────────────────
+  {
+    name: "Sunscope",
+    slug: "sunscope",
+    tagline: "Track sun position, golden hour, and shadow direction on a live map. Built with SunCalc and MapLibre.",
+    domain: "tools",
+    tech: ["React", "TypeScript", "MapLibre", "SunCalc"],
+    date: "2026-04",
+    url: "https://github.com/michaelpyon/sunscope",
+    liveUrl: null,
+    flagship: false,
+  },
+  {
+    name: "Chief Jumper",
+    slug: "chief-jumper",
+    tagline: "Endless runner with a corporate twist. Jump obstacles, climb the org chart, survive the office.",
+    domain: "games",
+    tech: ["JavaScript", "Canvas", "Sprite Animation"],
+    date: "2026-03",
+    url: "https://github.com/michaelpyon/ChiefJumper-Claude",
+    liveUrl: null,
+    flagship: false,
+  },
 ];
 
 export const domains: Domain[] = ["finance", "nyc", "games", "music", "tools", "data"];

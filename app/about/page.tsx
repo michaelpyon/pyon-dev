@@ -38,7 +38,7 @@ export default function AboutPage() {
           <p className="text-text-muted text-base leading-relaxed mb-4">
             Michael Pyon is a builder based in Brooklyn, NY. He makes tools that
             turn messy data into something useful, and ships them as fast as
-            possible. 43 projects across finance, city data, music, and games.
+            possible. 45 projects across finance, city data, music, and games.
           </p>
           <p className="text-text-muted text-base leading-relaxed">
             Every project starts with the same question: why doesn't this exist
