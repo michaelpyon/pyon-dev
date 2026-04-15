@@ -68,7 +68,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="pointer-events-none fixed top-0 left-0 z-50 flex items-center justify-center rounded-full border border-[#1A1A1A] mix-blend-difference"
+      className="pointer-events-none fixed top-0 left-0 z-50 flex items-center justify-center rounded-full border border-white mix-blend-difference"
       style={{
         x: springX,
         y: springY,
@@ -92,7 +92,7 @@ export function CustomCursor() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           aria-hidden="true"
-          className="text-[10px] font-medium text-[#1A1A1A]"
+          className="text-[10px] font-medium text-white"
         >
           View
         </motion.span>

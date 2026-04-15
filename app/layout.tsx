@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Michael Pyon",
   },
   description:
-    "Michael Pyon builds tools that make data legible. 43 projects across finance, NYC, music, and games.",
+    "Michael Pyon builds tools that make data legible. 44 projects across finance, NYC, music, and games.",
   openGraph: {
     type: "website",
     siteName: "Michael Pyon",
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     url: "https://michaelpyon.com",
     title: "Michael Pyon | Builder's Record",
     description:
-      "Michael Pyon builds tools that make data legible. 43 projects across finance, NYC, music, and games.",
+      "Michael Pyon builds tools that make data legible. 44 projects across finance, NYC, music, and games.",
     images: [{ url: "/og.png" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Michael Pyon | Builder's Record",
     description:
-      "Michael Pyon builds tools that make data legible. 43 projects across finance, NYC, music, and games.",
+      "Michael Pyon builds tools that make data legible. 44 projects across finance, NYC, music, and games.",
     images: ["/og.png"],
     site: "@michaelpyon",
     creator: "@michaelpyon",
@@ -49,6 +49,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem('theme')==='night')document.documentElement.setAttribute('data-theme','night')}catch(e){}`,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
