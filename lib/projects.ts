@@ -219,17 +219,6 @@ export const projects: Project[] = [
 
   // ── Music ──────────────────────────────────────────────────────────
   {
-    name: "Concert Prep",
-    slug: "concert-prep",
-    tagline: "Know every song before the show. Auto-generates setlist playlists from upcoming concerts.",
-    domain: "music",
-    tech: ["React", "Spotify API", "Setlist.fm API"],
-    date: "2026-03",
-    url: "https://github.com/michaelpyon/concert-prep",
-    liveUrl: "https://concert.michaelpyon.com",
-    flagship: false,
-  },
-  {
     name: "Air Composer",
     slug: "air-composer",
     tagline: "Play a theremin with your hands using just a webcam. Wave to make music.",

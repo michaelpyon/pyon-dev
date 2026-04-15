@@ -13,7 +13,7 @@ const categories = [
         tagline:
           "Play a theremin with your hands using just a webcam. Wave to make music.",
         stack: ["TypeScript", "MediaPipe", "Web Audio API"],
-        url: "https://air-composer.michaelpyon.com",
+        url: "https://air-composer.vercel.app",
         status: "live" as const,
         desktopOnly: true,
         desktopNote: "Requires webcam",
@@ -23,7 +23,7 @@ const categories = [
         tagline:
           "Turn your keyboard into a drum kit. Five songs. Rhythm scoring. Full session playback.",
         stack: ["JavaScript", "Web Audio API"],
-        url: "https://michaelpyon.github.io/keyboard-drummer/",
+        url: "https://keyboard-drummer.vercel.app",
         status: "live" as const,
         desktopOnly: true,
         desktopNote: "Desktop recommended",
@@ -81,7 +81,7 @@ const categories = [
         tagline:
           "Real-time severity scores for every NYC subway line. Updated continuously.",
         stack: ["React", "MTA API", "Node.js"],
-        url: "https://subway.michaelpyon.com",
+        url: "https://subway-shame.vercel.app",
         status: "live" as const,
         desktopOnly: false,
       },
