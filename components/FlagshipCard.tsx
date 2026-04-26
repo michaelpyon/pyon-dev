@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/lib/projects";
 import { domainLabels } from "@/lib/projects";
@@ -44,10 +45,23 @@ export function FlagshipCard({
           aria-label={`${project.name} case study`}
         >
           <div className="bg-surface-high aspect-[16/9] flex items-end p-8 overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-high/90 via-surface-high/40 to-transparent" />
-            <span className="font-display italic text-6xl sm:text-7xl text-text/10 flagship-img leading-none relative z-10">
-              {project.name}
-            </span>
+            {project.image ? (
+              <Image
+                src={project.image}
+                alt={`${project.name} preview`}
+                fill
+                sizes="(max-width: 768px) 100vw, 66vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                priority
+              />
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-t from-surface-high/90 via-surface-high/40 to-transparent" />
+                <span className="font-display italic text-6xl sm:text-7xl text-text/10 flagship-img leading-none relative z-10">
+                  {project.name}
+                </span>
+              </>
+            )}
           </div>
         </Link>
         <div className="md:col-span-4 md:-ml-24 z-10">
@@ -84,10 +98,22 @@ export function FlagshipCard({
       >
         <div className="mb-10 overflow-hidden">
           <div className="bg-surface-high aspect-[4/5] flex items-end p-6 overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-high/90 via-surface-high/40 to-transparent" />
-            <span className="font-display italic text-5xl text-text/10 flagship-img leading-none relative z-10">
-              {project.name}
-            </span>
+            {project.image ? (
+              <Image
+                src={project.image}
+                alt={`${project.name} preview`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              />
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-t from-surface-high/90 via-surface-high/40 to-transparent" />
+                <span className="font-display italic text-5xl text-text/10 flagship-img leading-none relative z-10">
+                  {project.name}
+                </span>
+              </>
+            )}
           </div>
         </div>
       </Link>

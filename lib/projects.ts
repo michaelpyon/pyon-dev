@@ -10,6 +10,7 @@ export interface Project {
   url: string;
   liveUrl: string | null;
   flagship: boolean;
+  image?: string;
 }
 
 export const projects: Project[] = [
@@ -24,6 +25,7 @@ export const projects: Project[] = [
     url: "https://github.com/michaelpyon/festival-optimizer",
     liveUrl: "https://festival-optimizer-app.vercel.app",
     flagship: true,
+    image: "/cards/festival-optimizer.png",
   },
   {
     name: "Menswear Market Pulse",
@@ -35,6 +37,7 @@ export const projects: Project[] = [
     url: "https://github.com/michaelpyon/menswear-market-pulse",
     liveUrl: "https://menswear-intel.vercel.app",
     flagship: true,
+    image: "/cards/menswear.png",
   },
   {
     name: "Shock Cascade",
@@ -46,6 +49,7 @@ export const projects: Project[] = [
     url: "https://github.com/michaelpyon/shock-cascade",
     liveUrl: "https://shock-cascade-rebuild.vercel.app",
     flagship: true,
+    image: "/cards/shock-cascade.png",
   },
 
   // ── Finance & Data ─────────────────────────────────────────────────
